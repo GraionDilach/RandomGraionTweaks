@@ -1,0 +1,11 @@
+@0 = ~Add random arcane spell scrolls to arcane casters of their highest memorized level~
+@1 = ~Add random arcane spell scrolls to arcane casters of their highest memorized level - 4~
+@2 = ~Add random arcane spell scrolls to arcane casters up until their highest memorized level~
+@3 = ~Add random arcane spell scrolls to arcane casters up until their highest memorized level - 4~
+
+@4 = ~Add random arcane spell scrolls to divine casters of their highest memorized level~
+@5 = ~Add random arcane spell scrolls to divine casters of their highest memorized level - 4~
+@6 = ~Add random arcane spell scrolls to divine casters up until their highest memorized level~
+@7 = ~Add random arcane spell scrolls to divine casters up until their highest memorized level - 4~
+
+@1000 = ~This component can only be installed on the Enhanced Edition version of the games.~

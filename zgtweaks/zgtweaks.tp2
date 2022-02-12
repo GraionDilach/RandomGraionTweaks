@@ -1,0 +1,258 @@
+BACKUP ~weidu_external/backup/zgtweaks~ // location to store files for uninstall purposes
+AUTHOR ~Graion Dilach~
+VERSION ~0.1~
+
+LANGUAGE ~English~ ~english~ ~zgtweaks/english/setup.tra~
+
+BEGIN @0
+LABEL ZG-SCROLLS-FOR-MAGES
+DESIGNATED 10
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
+
+	INCLUDE ~%MOD_FOLDER%/library/setup_scrolls.tpa~
+
+	ACTION_IF NOT FILE_EXISTS_IN_GAME ~ZGTRWS1.ITM~ BEGIN
+		LAF setup_random_scrolls END
+	END
+
+	OUTER_SET max_spell_level = 0
+
+	COPY_EXISTING_REGEXP GLOB ~.*\.cre~ ~override~
+		GET_OFFSET_ARRAY spell_mem_array CRE_V10_SPELL_MEM_INFO
+		PHP_EACH spell_mem_array AS spell_mem_no => spell_mem_offset
+		BEGIN
+			READ_SHORT (spell_mem_offset + 0x0000) spell_level
+			READ_SHORT (spell_mem_offset + 0x0006) spell_type
+			READ_LONG (spell_mem_offset + 0x000c) spell_count
+	
+			PATCH_IF (spell_type == 1 AND spell_count > 0 AND max_spell_level < spell_level + 1) BEGIN
+				max_spell_level = spell_level + 1
+			END
+		END
+		PATCH_IF (max_spell_level > 0) BEGIN
+			ADD_CRE_ITEM ~ZGTRWS%max_spell_level%~ #1 #0 #0 ~NONE~ ~INV~
+		END
+		SET max_spell_level = 0
+		BUT_ONLY
+
+BEGIN @1
+LABEL ZG-LOWLVL-SCROLLS-FOR-HIGHLVL-MAGES
+DESIGNATED 11
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
+
+	INCLUDE ~%MOD_FOLDER%/library/setup_scrolls.tpa~
+
+	ACTION_IF NOT FILE_EXISTS_IN_GAME ~ZGTRWS1.ITM~ BEGIN
+		LAF setup_random_scrolls END
+	END
+
+	OUTER_SET max_spell_level = 0
+
+	COPY_EXISTING_REGEXP GLOB ~.*\.cre~ ~override~
+		GET_OFFSET_ARRAY spell_mem_array CRE_V10_SPELL_MEM_INFO
+		PHP_EACH spell_mem_array AS spell_mem_no => spell_mem_offset
+		BEGIN
+			READ_SHORT (spell_mem_offset + 0x0000) spell_level
+			READ_SHORT (spell_mem_offset + 0x0006) spell_type
+			READ_LONG (spell_mem_offset + 0x000c) spell_count
+	
+			PATCH_IF (spell_type == 1 AND spell_count > 0 AND max_spell_level < spell_level + 1) BEGIN
+				max_spell_level = spell_level + 1
+			END
+		END
+		PATCH_IF (max_spell_level > 4) BEGIN
+			SET secondary_spell_level = max_spell_level - 4
+			ADD_CRE_ITEM ~ZGTRWS%secondary_spell_level%~ #1 #0 #0 ~NONE~ ~INV~
+		END
+		SET max_spell_level = 0
+		BUT_ONLY
+		
+BEGIN @2
+LABEL ZG-RANDOM-SCROLLS-FOR-MAGES
+DESIGNATED 12
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
+
+	INCLUDE ~%MOD_FOLDER%/library/setup_scrolls.tpa~
+
+	ACTION_IF NOT FILE_EXISTS_IN_GAME ~ZGTRWS1.ITM~ BEGIN
+		LAF setup_random_scrolls END
+	END
+
+	OUTER_SET max_spell_level = 0
+
+	COPY_EXISTING_REGEXP GLOB ~.*\.cre~ ~override~
+		GET_OFFSET_ARRAY spell_mem_array CRE_V10_SPELL_MEM_INFO
+		PHP_EACH spell_mem_array AS spell_mem_no => spell_mem_offset
+		BEGIN
+			READ_SHORT (spell_mem_offset + 0x0000) spell_level
+			READ_SHORT (spell_mem_offset + 0x0006) spell_type
+			READ_LONG (spell_mem_offset + 0x000c) spell_count
+	
+			PATCH_IF (spell_type == 1 AND spell_count > 0 AND max_spell_level < spell_level + 1) BEGIN
+				max_spell_level = spell_level + 1
+			END
+		END
+		PATCH_IF (max_spell_level > 0) BEGIN
+			ADD_CRE_ITEM ~ZGTRWS%max_spell_level%M~ #1 #0 #0 ~NONE~ ~INV~
+		END
+		SET max_spell_level = 0
+		BUT_ONLY
+
+BEGIN @3
+LABEL ZG-RANDOM-LOWLVL-SCROLLS-FOR-HIGHLVL-MAGES
+DESIGNATED 13
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
+
+	INCLUDE ~%MOD_FOLDER%/library/setup_scrolls.tpa~
+
+	ACTION_IF NOT FILE_EXISTS_IN_GAME ~ZGTRWS1.ITM~ BEGIN
+		LAF setup_random_scrolls END
+	END
+
+	OUTER_SET max_spell_level = 0
+
+	COPY_EXISTING_REGEXP GLOB ~.*\.cre~ ~override~
+		GET_OFFSET_ARRAY spell_mem_array CRE_V10_SPELL_MEM_INFO
+		PHP_EACH spell_mem_array AS spell_mem_no => spell_mem_offset
+		BEGIN
+			READ_SHORT (spell_mem_offset + 0x0000) spell_level
+			READ_SHORT (spell_mem_offset + 0x0006) spell_type
+			READ_LONG (spell_mem_offset + 0x000c) spell_count
+	
+			PATCH_IF (spell_type == 1 AND spell_count > 0 AND max_spell_level < spell_level + 1) BEGIN
+				max_spell_level = spell_level + 1
+			END
+		END
+		PATCH_IF (max_spell_level > 4) BEGIN
+			SET secondary_spell_level = max_spell_level - 4
+			ADD_CRE_ITEM ~ZGTRWS%secondary_spell_level%M~ #1 #0 #0 ~NONE~ ~INV~
+		END
+		SET max_spell_level = 0
+		BUT_ONLY
+
+
+BEGIN @4
+LABEL ZG-SCROLLS-FOR-CLERICS
+DESIGNATED 20
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
+
+	INCLUDE ~%MOD_FOLDER%/library/setup_scrolls.tpa~
+
+	ACTION_IF NOT FILE_EXISTS_IN_GAME ~ZGTRWS1.ITM~ BEGIN
+		LAF setup_random_scrolls END
+	END
+
+	OUTER_SET max_spell_level = 0
+
+	COPY_EXISTING_REGEXP GLOB ~.*\.cre~ ~override~
+		GET_OFFSET_ARRAY spell_mem_array CRE_V10_SPELL_MEM_INFO
+		PHP_EACH spell_mem_array AS spell_mem_no => spell_mem_offset
+		BEGIN
+			READ_SHORT (spell_mem_offset + 0x0000) spell_level
+			READ_SHORT (spell_mem_offset + 0x0006) spell_type
+			READ_LONG (spell_mem_offset + 0x000c) spell_count
+	
+			PATCH_IF (spell_type == 0 AND spell_count > 0 AND max_spell_level < spell_level + 1) BEGIN
+				max_spell_level = spell_level + 1
+			END
+		END
+		PATCH_IF (max_spell_level > 0) BEGIN
+			ADD_CRE_ITEM ~ZGTRWS%max_spell_level%~ #1 #0 #0 ~NONE~ ~INV~
+		END
+		SET max_spell_level = 0
+		BUT_ONLY
+
+BEGIN @5
+LABEL ZG-LOWLVL-SCROLLS-FOR-HIGHLVL-CLERICS
+DESIGNATED 21
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
+
+	INCLUDE ~%MOD_FOLDER%/library/setup_scrolls.tpa~
+
+	ACTION_IF NOT FILE_EXISTS_IN_GAME ~ZGTRWS1.ITM~ BEGIN
+		LAF setup_random_scrolls END
+	END
+
+	OUTER_SET max_spell_level = 0
+
+	COPY_EXISTING_REGEXP GLOB ~.*\.cre~ ~override~
+		GET_OFFSET_ARRAY spell_mem_array CRE_V10_SPELL_MEM_INFO
+		PHP_EACH spell_mem_array AS spell_mem_no => spell_mem_offset
+		BEGIN
+			READ_SHORT (spell_mem_offset + 0x0000) spell_level
+			READ_SHORT (spell_mem_offset + 0x0006) spell_type
+			READ_LONG (spell_mem_offset + 0x000c) spell_count
+	
+			PATCH_IF (spell_type == 0 AND spell_count > 0 AND max_spell_level < spell_level + 1) BEGIN
+				max_spell_level = spell_level + 1
+			END
+		END
+		PATCH_IF (max_spell_level > 4) BEGIN
+			SET secondary_spell_level = max_spell_level - 4
+			ADD_CRE_ITEM ~ZGTRWS%secondary_spell_level%~ #1 #0 #0 ~NONE~ ~INV~
+		END
+		SET max_spell_level = 0
+		BUT_ONLY
+		
+BEGIN @6
+LABEL ZG-RANDOM-SCROLLS-FOR-CLERICS
+DESIGNATED 22
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
+
+	INCLUDE ~%MOD_FOLDER%/library/setup_scrolls.tpa~
+
+	ACTION_IF NOT FILE_EXISTS_IN_GAME ~ZGTRWS1.ITM~ BEGIN
+		LAF setup_random_scrolls END
+	END
+
+	OUTER_SET max_spell_level = 0
+
+	COPY_EXISTING_REGEXP GLOB ~.*\.cre~ ~override~
+		GET_OFFSET_ARRAY spell_mem_array CRE_V10_SPELL_MEM_INFO
+		PHP_EACH spell_mem_array AS spell_mem_no => spell_mem_offset
+		BEGIN
+			READ_SHORT (spell_mem_offset + 0x0000) spell_level
+			READ_SHORT (spell_mem_offset + 0x0006) spell_type
+			READ_LONG (spell_mem_offset + 0x000c) spell_count
+	
+			PATCH_IF (spell_type == 0 AND spell_count > 0 AND max_spell_level < spell_level + 1) BEGIN
+				max_spell_level = spell_level + 1
+			END
+		END
+		PATCH_IF (max_spell_level > 0) BEGIN
+			ADD_CRE_ITEM ~ZGTRWS%max_spell_level%M~ #1 #0 #0 ~NONE~ ~INV~
+		END
+		SET max_spell_level = 0
+		BUT_ONLY
+
+BEGIN @7
+LABEL ZG-RANDOM-LOWLVL-SCROLLS-FOR-HIGHLVL-CLERICS
+DESIGNATED 23
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
+
+	INCLUDE ~%MOD_FOLDER%/library/setup_scrolls.tpa~
+
+	ACTION_IF NOT FILE_EXISTS_IN_GAME ~ZGTRWS1.ITM~ BEGIN
+		LAF setup_random_scrolls END
+	END
+
+	OUTER_SET max_spell_level = 0
+
+	COPY_EXISTING_REGEXP GLOB ~.*\.cre~ ~override~
+		GET_OFFSET_ARRAY spell_mem_array CRE_V10_SPELL_MEM_INFO
+		PHP_EACH spell_mem_array AS spell_mem_no => spell_mem_offset
+		BEGIN
+			READ_SHORT (spell_mem_offset + 0x0000) spell_level
+			READ_SHORT (spell_mem_offset + 0x0006) spell_type
+			READ_LONG (spell_mem_offset + 0x000c) spell_count
+	
+			PATCH_IF (spell_type == 0 AND spell_count > 0 AND max_spell_level < spell_level + 1) BEGIN
+				max_spell_level = spell_level + 1
+			END
+		END
+		PATCH_IF (max_spell_level > 4) BEGIN
+			SET secondary_spell_level = max_spell_level - 4
+			ADD_CRE_ITEM ~ZGTRWS%secondary_spell_level%M~ #1 #0 #0 ~NONE~ ~INV~
+		END
+		SET max_spell_level = 0
+		BUT_ONLY

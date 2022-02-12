@@ -1,0 +1,112 @@
+DEFINE_ACTION_FUNCTION setup_random_scrolls BEGIN
+
+	OUTER_TEXT_SPRINT scrolllv1 ~ZGTRWS1 ~
+	OUTER_TEXT_SPRINT scrolllv2 ~ZGTRWS2 ~
+	OUTER_TEXT_SPRINT scrolllv3 ~ZGTRWS3 ~
+	OUTER_TEXT_SPRINT scrolllv4 ~ZGTRWS4 ~
+	OUTER_TEXT_SPRINT scrolllv5 ~ZGTRWS5 ~
+	OUTER_TEXT_SPRINT scrolllv6 ~ZGTRWS6 ~
+	OUTER_TEXT_SPRINT scrolllv7 ~ZGTRWS7 ~
+	OUTER_TEXT_SPRINT scrolllv8 ~ZGTRWS8 ~
+	OUTER_TEXT_SPRINT scrolllv9 ~ZGTRWS9 ~
+
+	COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~
+		PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+		  GET_OFFSET_ARRAY headers ITM_V10_HEADERS
+		  PHP_EACH headers AS int => hoff BEGIN
+			GET_OFFSET_ARRAY2 fx hoff ITM_V10_HEAD_EFFECTS
+			PHP_EACH fx AS intj => foff BEGIN
+			  READ_SHORT foff opcode
+			  PATCH_IF (opcode = 147) BEGIN 
+				READ_ASCII (foff + 0x14) splres
+				SNPRINT (0 - 3) the_res ~%splres%~
+				SNPRINT 1 the_level ~%the_res%~
+				SPRINT spell_level ~scrolllv%the_level%~
+				INNER_ACTION BEGIN
+					ACTION_IF NOT (EVAL ~%splres%~ STRING_CONTAINS_REGEXP ~SPWI~) THEN BEGIN
+						ACTION_IF (EVAL ~%%spell_level%%~ STRING_CONTAINS_REGEXP EVAL ~%SOURCE_RES%~) THEN BEGIN
+							OUTER_TEXT_SPRINT EVAL ~%spell_level%~ EVAL ~%%spell_level%% %SOURCE_RES%~
+						END
+					END
+				END
+			  END
+			END
+		  END
+		END
+	  BUT_ONLY
+ 
+	ACTION_IF !FILE_EXISTS_IN_GAME "rndtres.2da" BEGIN
+<<<<<<<< ./inlined/rndtres.2da
+2DA V1.0 
+*
+	1 2 3 4 5 6 7 8 9 10	
+>>>>>>>>
+    COPY ~./inlined/rndtres.2da~ ~override~
+	END
+
+	APPEND ~rndtres.2da~ ~%scrolllv1%~
+	APPEND ~rndtres.2da~ ~%scrolllv2%~
+	APPEND ~rndtres.2da~ ~%scrolllv3%~
+	APPEND ~rndtres.2da~ ~%scrolllv4%~
+	APPEND ~rndtres.2da~ ~%scrolllv5%~
+	APPEND ~rndtres.2da~ ~%scrolllv6%~
+	APPEND ~rndtres.2da~ ~%scrolllv7%~
+	APPEND ~rndtres.2da~ ~%scrolllv8%~
+	APPEND ~rndtres.2da~ ~%scrolllv9%~
+	
+	APPEND ~rndtres.2da~ ~ZGTRWS1M ZGTRWS1~
+	APPEND ~rndtres.2da~ ~ZGTRWS2M ZGTRWS1 ZGTRWS2~
+	APPEND ~rndtres.2da~ ~ZGTRWS3M ZGTRWS1 ZGTRWS2 ZGTRWS3~
+	APPEND ~rndtres.2da~ ~ZGTRWS4M ZGTRWS1 ZGTRWS2 ZGTRWS3 ZGTRWS4~
+	APPEND ~rndtres.2da~ ~ZGTRWS5M ZGTRWS1 ZGTRWS2 ZGTRWS3 ZGTRWS4 ZGTRWS5~
+	APPEND ~rndtres.2da~ ~ZGTRWS6M ZGTRWS1 ZGTRWS2 ZGTRWS3 ZGTRWS4 ZGTRWS5 ZGTRWS6~
+	APPEND ~rndtres.2da~ ~ZGTRWS7M ZGTRWS1 ZGTRWS2 ZGTRWS3 ZGTRWS4 ZGTRWS5 ZGTRWS6 ZGTRWS7~
+	APPEND ~rndtres.2da~ ~ZGTRWS8M ZGTRWS1 ZGTRWS2 ZGTRWS3 ZGTRWS4 ZGTRWS5 ZGTRWS6 ZGTRWS7 ZGTRWS8~
+	APPEND ~rndtres.2da~ ~ZGTRWS9M ZGTRWS1 ZGTRWS2 ZGTRWS3 ZGTRWS4 ZGTRWS5 ZGTRWS6 ZGTRWS7 ZGTRWS8 ZGTRWS9~
+
+	COPY_EXISTING ~rndtres.2da~ ~override~
+		// Ensure all table rows have valid number of columns.
+		// Missing headers are padded by column indices. Missing content is padded by default value.
+		SET num_added = 0
+		COUNT_2DA_COLS num_cols
+		READ_2DA_ENTRIES_NOW table 1
+		READ_2DA_ENTRY_FORMER table 1 0 default
+		FOR (row = 0; row < table; ++row) BEGIN
+		  READ_2DA_ENTRY_FORMER table row 0 line
+		  FOR (col = 1; col < num_cols && VARIABLE_IS_SET $table(~%row%~ ~%col%~); ++col) BEGIN
+			READ_2DA_ENTRY_FORMER table row col v
+			TEXT_SPRINT line ~%line% %v%~
+		  END
+		  // fill in missing data
+		  PATCH_IF (row = 2) BEGIN  // header
+			FOR (; col < num_cols - 1; ++col) BEGIN
+			  TEXT_SPRINT line ~%line% %col%~
+			  SET num_added += 1
+			END
+		  END ELSE PATCH_IF (row > 2) BEGIN // content
+			FOR (; col < num_cols; ++col) BEGIN
+			  TEXT_SPRINT line ~%line% %default%~
+			  SET num_added += 1
+			END
+		  END
+		  TEXT_SPRINT $lines(~%row%~) ~%line%%LNL%~
+		  SET $lines(~%row%~ ~size~) = STRING_LENGTH $lines(~%row%~)
+		END
+	  
+		// write normalized table to buffer
+		PATCH_IF (num_added > 0) BEGIN
+		  DELETE_BYTES 0 BUFFER_LENGTH
+		  FOR (row = 0 pos = 0; row < table; ++row) BEGIN
+			SET size = $lines(~%row%~ ~size~)
+			INSERT_BYTES pos size
+			WRITE_ASCIIE pos $lines(~%row%~) (size)
+			SET pos += size
+		  END
+		END
+		PRETTY_PRINT_2DA
+		BUT_ONLY
+	
+	ACTION_FOR_EACH ITEM IN ~ZGTRWS1~ ~ZGTRWS2~ ~ZGTRWS3~ ~ZGTRWS4~ ~ZGTRWS5~ ~ZGTRWS6~ ~ZGTRWS7~ ~ZGTRWS8~ ~ZGTRWS9~ ~ZGTRWS1M~ ~ZGTRWS2M~ ~ZGTRWS3M~ ~ZGTRWS4M~ ~ZGTRWS5M~ ~ZGTRWS6M~ ~ZGTRWS7M~ ~ZGTRWS8M~ ~ZGTRWS9M~ BEGIN
+		COPY_EXISTING ~RNDTRE01.ITM~ ~override\%ITEM%.ITM~
+	END
+END
