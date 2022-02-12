@@ -19,3 +19,11 @@ The following combinations are offered (each can be selected individiually):
 This means that a high-level Cleric-Mage can end up with up to 8 additional scrolls if all components are installed.
 
 __COMPATIBILITY:__ These components should be installed after all mods which might buff spellcaster AI (SCS). These components functionally overlap with SCS's "Wider spell scrolls" but they can be installed together. These components __need__ to be installed after [Abel's Nonrandom Treasures](https://forums.beamdog.com/discussion/83483/mod-nonrandom-treasures) mod on IWDEE.
+
+## Acknowledgements
+
+Thanks for argent77, subtledoctor and CamDawg for code snippets.
+
+## Disclaimer
+
+This mod is unofficial Fan Content permitted under the Fan Content Policy. Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of the Coast LLC. This mod is also not developed, supported, or endorsed by BioWare, Black Isle Studios, Interplay Entertainment Corp., Overhaul Games or Beamdog. All other trademarks and copyrights are property of their respective owners.
