@@ -2,7 +2,7 @@
 
 This mod features various tweaks by Graion Dilach for games on the Infinity Engine.
 
-## Components 10-23 More Random Spell Scrolls
+## Components 10-23 More Random Spell Scrolls (EE games only)
 
 Inspired by SCS's "Wider spell scrolls" component, these components add random arcane spell scrolls the arcane/divine spellcasters. The random spell scrolls include mod-added scrolls _if they follow the spell.ids standard_ (scrolls of spells added through the OlvynChuru UI hack are not included).
 
