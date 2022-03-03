@@ -10,30 +10,32 @@ DEFINE_ACTION_FUNCTION setup_random_scrolls BEGIN
 	OUTER_TEXT_SPRINT scrolllv8 ~ZGTRWS8 ~
 	OUTER_TEXT_SPRINT scrolllv9 ~ZGTRWS9 ~
 
+	OUTER_TEXT_SPRINT exclusions ~TTSCRL01 TTSCRL02 DW#ALLSP~
+
 	COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~
-		PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
-		  GET_OFFSET_ARRAY headers ITM_V10_HEADERS
-		  PHP_EACH headers AS int => hoff BEGIN
-			GET_OFFSET_ARRAY2 fx hoff ITM_V10_HEAD_EFFECTS
-			PHP_EACH fx AS intj => foff BEGIN
-			  READ_SHORT foff opcode
-			  PATCH_IF (opcode = 147) BEGIN 
-				READ_ASCII (foff + 0x14) splres
-				SNPRINT (0 - 3) the_res ~%splres%~
-				SNPRINT 1 the_level ~%the_res%~
-				SPRINT spell_level ~scrolllv%the_level%~
-				INNER_ACTION BEGIN
-					ACTION_IF NOT (EVAL ~%splres%~ STRING_CONTAINS_REGEXP ~SPWI~) THEN BEGIN
-						ACTION_IF (EVAL ~%%spell_level%%~ STRING_CONTAINS_REGEXP EVAL ~%SOURCE_RES%~) THEN BEGIN
+	  GET_OFFSET_ARRAY headers ITM_V10_HEADERS
+	  PHP_EACH headers AS int => hoff BEGIN
+		GET_OFFSET_ARRAY2 fx hoff ITM_V10_HEAD_EFFECTS
+		PHP_EACH fx AS intj => foff BEGIN
+		  READ_SHORT foff opcode
+		  PATCH_IF (opcode = 147) BEGIN 
+			READ_ASCII (foff + 0x14) splres
+			SNPRINT (0 - 3) the_res ~%splres%~
+			SNPRINT 1 the_level ~%the_res%~
+			SPRINT spell_level ~scrolllv%the_level%~
+			INNER_ACTION BEGIN
+				ACTION_IF NOT (EVAL ~%splres%~ STRING_CONTAINS_REGEXP ~SPWI~) THEN BEGIN
+					ACTION_IF (EVAL ~%%spell_level%%~ STRING_CONTAINS_REGEXP EVAL ~%SOURCE_RES%~) THEN BEGIN
+						ACTION_IF (EVAL ~%%exclusions%%~ STRING_CONTAINS_REGEXP EVAL ~%SOURCE_RES%~) THEN BEGIN
 							OUTER_TEXT_SPRINT EVAL ~%spell_level%~ EVAL ~%%spell_level%% %SOURCE_RES%~
-						END
 					END
 				END
-			  END
 			END
 		  END
 		END
-	  BUT_ONLY
+	  END
+	END
+	BUT_ONLY
  
 	ACTION_IF !FILE_EXISTS_IN_GAME "rndtres.2da" BEGIN
 <<<<<<<< ./inlined/rndtres.2da
