@@ -20,6 +20,30 @@ This means that a high-level Cleric-Mage can end up with up to 8 additional scro
 
 __COMPATIBILITY:__ These components should be installed after all mods which might buff spellcaster AI (SCS). These components functionally overlap with SCS's "Wider spell scrolls" but they can be installed together. These components __need__ to be installed after [Abel's Nonrandom Treasures](https://forums.beamdog.com/discussion/83483/mod-nonrandom-treasures) mod on IWDEE.
 
+## Component 100 Mixed PnP-BG wisdom-based bonus spells table
+
+As discussed during the development of the EE Fixpack, Bioware made an error when they implemented a feature with the way the bonus spells are set up (which was only fixed in PST), resulting with more bonus mid-level spells and less low-level bonus spells than intended. This component tries to blend both options so that players will end up having the bonuses of both tables consistently excluding one caveat: both PnP and BG provides the first level 4 bonus spells on Wisdom 18 which breaks a pattern and is thereby delayed.
+
+The full table:
+
+| Wisdom\Bonus spells | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+|---------------------|---|---|---|---|---|---|---|
+|                  13 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
+|                  14 | 2 | 0 | 0 | 0 | 0 | 0 | 0 |
+|                  15 | 2 | 1 | 0 | 0 | 0 | 0 | 0 |
+|                  16 | 2 | 2 | 0 | 0 | 0 | 0 | 0 |
+|                  17 | 2 | 2 | 1 | 0 | 0 | 0 | 0 |
+|                  18 | 3 | 2 | 2 | 0 | 0 | 0 | 0 |
+|                  19 | 3 | 3 | 2 | 1 | 0 | 0 | 0 |
+|                  20 | 3 | 3 | 2 | 2 | 0 | 0 | 0 |
+|                  21 | 4 | 3 | 3 | 2 | 1 | 0 | 0 |
+|                  22 | 4 | 4 | 3 | 3 | 2 | 0 | 0 |
+|                  23 | 4 | 4 | 4 | 3 | 2 | 1 | 0 |
+|                  24 | 4 | 4 | 4 | 4 | 3 | 2 | 0 |
+|                  25 | 4 | 4 | 4 | 4 | 4 | 3 | 1 |
+
+__COMPATIBILITY:__ This component overlaps with a proposed Tweaks Anthology component and partially overlaps with Scales of Balance's Stat-based Bonus Spells. Compatibility against the latter is untested.
+
 ## Acknowledgements
 
 Thanks for argent77, subtledoctor and CamDawg for code snippets.

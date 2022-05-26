@@ -1,6 +1,6 @@
 BACKUP ~weidu_external/backup/zgtweaks~ // location to store files for uninstall purposes
 AUTHOR ~Graion Dilach~
-VERSION ~1.1~
+VERSION ~1.2~
 
 LANGUAGE ~English~ ~english~ ~zgtweaks/english/setup.tra~
 
@@ -256,3 +256,10 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
 		END
 		SET max_spell_level = 0
 		BUT_ONLY
+
+
+BEGIN @100
+LABEL ZG-BOBW-WISDOM-TABLE
+DESIGNATED 100
+
+COPY ~%MOD_FOLDER%/2da/mxsplwis.2da~ ~override~
