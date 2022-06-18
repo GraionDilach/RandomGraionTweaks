@@ -1,6 +1,6 @@
-BACKUP ~weidu_external/backup/zgtweaks~ // location to store files for uninstall purposes
+BACKUP ~weidu_external/zgtweaks/backup~ // location to store files for uninstall purposes
 AUTHOR ~Graion Dilach~
-VERSION ~1.2~
+VERSION ~1.3~
 
 LANGUAGE ~English~ ~english~ ~zgtweaks/english/setup.tra~
 
@@ -263,3 +263,61 @@ LABEL ZG-BOBW-WISDOM-TABLE
 DESIGNATED 100
 
 COPY ~%MOD_FOLDER%/2da/mxsplwis.2da~ ~override~
+
+BEGIN @10000
+LABEL ZG-BAG-OF-SPILLING
+DESIGNATED 10000
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet soa tob tutu tutu_totsc bgt ca iwd_in_bg2~) @1000
+
+MKDIR ~./weidu_external/zgtweaks/equipdump~
+ACTION_DEFINE_ARRAY spilled_creatures BEGIN END
+OUTER_SET array_index = 0
+
+INCLUDE ~zgtweaks\library\spilling.tpa~
+
+PRINT ~Dumping creature item data...~
+SILENT
+
+COPY_EXISTING_REGEXP GLOB ~.*\.cre~ ~override~
+	LPF DUMP_CRE_ITEM RET spill END
+	PATCH_IF spill = 1 BEGIN
+		SPRINT  $spilled_creatures(~%array_index%~) ~%SOURCE_RES%~
+		array_index += 1
+	END
+BUT_ONLY
+
+VERBOSE
+PRINT ~Moving excessive items to bags...~
+
+COPY ~%MOD_FOLDER%/copy/ZGTBAG.BAM~ ~override~
+
+COPY ~%MOD_FOLDER%/copy/ZGTBAG.ITM~ ~weidu_external/zgtweaks~
+	SAY NAME1 @10003
+	SAY NAME2 @10001
+	SAY DESC @10002
+	SAY UNIDENTIFIED_DESC @10004
+
+OUTER_SET bagindex = 0
+ACTION_PHP_EACH %spilled_creatures% AS crekey => crevalue BEGIN
+	OUTER_SET bagindex += 1
+	ACTION_IF bagindex > 0xFFFF BEGIN
+		FAIL ~Ran out of bag indexes; component failed to install.~
+	END
+
+	LAF TO_HEX_NUMBER INT_VAR value = bagindex RET hexNumber END
+
+	COPY ~weidu_external/zgtweaks/ZGTBAG.ITM~ ~override/ZGTB%hexNumber%.ITM~
+	
+	COPY_EXISTING ~%crevalue%.cre~ ~override~
+		REMOVE_CRE_ITEMS
+		PATCH_REINCLUDE ~weidu_external/zgtweaks/equipdump/%crevalue%~
+		ADD_CRE_ITEM ~ZGTB%hexNumber%~ #0 #0 #0 ~IDENTIFIED&UNSTEALABLE~ ~INV1~
+	BUT_ONLY
+	
+	COPY ~%MOD_FOLDER%/copy/ZGTBAG.STO~ ~override/ZGTB%hexNumber%.STO~
+		SAY NAME2 @10001
+		PATCH_REINCLUDE ~weidu_external/zgtweaks/equipdump/spilled-%crevalue%~
+END
+
+
+

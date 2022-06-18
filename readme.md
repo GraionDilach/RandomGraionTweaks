@@ -42,11 +42,21 @@ The full table:
 |                  24 | 4 | 4 | 4 | 4 | 3 | 2 | 0 |
 |                  25 | 4 | 4 | 4 | 4 | 4 | 3 | 1 |
 
-__COMPATIBILITY:__ This component overlaps with a proposed Tweaks Anthology component and partially overlaps with Scales of Balance's Stat-based Bonus Spells. Compatibility against the latter is untested.
+__COMPATIBILITY:__ This component overwrites Tweaks Anthology's Alter Wisdom-Based Divine Bonus Spell Table component and partially overwrites Scales of Balance's Stat-based Bonus Spells.
+
+## Component 10000 Bag of Spilling
+
+There is a possibility that installing too many content/item mods pushes out some of the crucial items from a creature's inventory. This component goes through all creatures and collect all such supposed to be __droppable__ but no longer available items and collects them into an unstealable one-way Bag of Spilling to the creature's eighth inventory slot. Undroppable items lost due to megamod installations are not recovered.
+
+See [here](https://www.gibberlings3.net/forums/topic/35016-do-cres-drop-all-their-assigned-items-or-is-there-a-limit-split-from-please-check-my-install-list-26-eet) for the scenario this component covers.
+
+For other modders: all the inventory data are exported to plaintext to weidu_external\zgtweaks\equipdump\(spilled-)FILENAME format for possible review. Undroppable spilled items are also listed and commented out.
+
+__COMPATIBILITY:__ This component needs to come last in your install order. Due to the principle this mod component works, it is possible it exposes a bug in itself and/or in a different mod. Please report any suspicious content you see in these bags.
 
 ## Acknowledgements
 
-Thanks for argent77, subtledoctor and CamDawg for code snippets.
+Thanks for argent77, subtledoctor, CamDawg and Luke for code snippets.
 
 ## Disclaimer
 

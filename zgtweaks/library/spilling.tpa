@@ -1,0 +1,240 @@
+
+/**
+ * Patch function. Converts any decimal number into a hexadecimal number.
+ * INT_VAR value      The decimal number to convert.
+ * INT_VAR minDigits  Minimum number of digits for the returned hex value. (default: 1)
+ * INT_VAR prefix     A flag that indicates whether the returned number will be prefixed with "0x". (default: 0)
+ * RET hexNumber      The converted hexadecimal number as string.
+ */
+ DEFINE_PATCH_FUNCTION TO_HEX_NUMBER
+ INT_VAR
+   value     = 0
+   minDigits = 1
+   prefix    = 0
+ RET
+   hexNumber
+ BEGIN
+   SET minDigits = (minDigits < 1) ? 1 : minDigits
+   SET minDigits = (minDigits > 8) ? 8 : minDigits
+   TEXT_SPRINT hexNumber ~~
+   PATCH_DEFINE_ARRAY digit BEGIN ~0~ ~1~ ~2~ ~3~ ~4~ ~5~ ~6~ ~7~ ~8~ ~9~ ~A~ ~B~ ~C~ ~D~ ~E~ ~F~ END
+ 
+   PATCH_IF (value < 0) BEGIN
+	 SET signed = 1
+	 SET value = 0 - value
+   END ELSE BEGIN
+	 SET signed = 0
+   END
+ 
+   WHILE (value != 0) BEGIN
+	 SET curDigit = value BAND 0xf
+	 SET value = value BLSR 4
+	 TEXT_SPRINT hexDigit $EVAL digit(~%curDigit%~)
+	 TEXT_SPRINT hexNumber ~%hexDigit%%hexNumber%~
+   END
+ 
+   WHILE (STRING_LENGTH ~%hexNumber%~ < minDigits) BEGIN
+	 TEXT_SPRINT hexNumber ~0%hexNumber%~
+   END
+ 
+   PATCH_IF (prefix) BEGIN
+	 TEXT_SPRINT hexNumber ~0x%hexNumber%~
+   END
+ 
+   PATCH_IF (signed) BEGIN
+	 TEXT_SPRINT hexNumber ~-%hexNumber%~
+   END
+ END
+ 
+ // Action version of TO_HEX_NUMBER
+ DEFINE_ACTION_FUNCTION TO_HEX_NUMBER
+ INT_VAR
+   value     = 0
+   minDigits = 4
+   prefix    = 0
+ RET
+   hexNumber
+ BEGIN
+   OUTER_PATCH ~~ BEGIN
+	 LPF TO_HEX_NUMBER INT_VAR value = value minDigits = minDigits prefix = prefix RET hexNumber END
+   END
+ END
+
+DEFINE_PATCH_FUNCTION DUMP_CRE_ITEM
+RET
+  spill
+BEGIN
+	DEFINE_ASSOCIATIVE_ARRAY itemflags BEGIN
+		0  =>  "NONE"
+		1  =>  "IDENTIFIED"
+		2  =>  "UNSTEALABLE"
+		4  =>  "STOLEN"
+		8  =>  "UNDROPPABLE"
+		5  =>  "IDENTIFIED&STOLEN"
+		3  =>  "IDENTIFIED&UNSTEALABLE"
+		9  =>  "IDENTIFIED&UNDROPPABLE"
+		10 =>  "UNSTEALABLE&UNDROPPABLE"
+		12 =>  "STOLEN&UNDROPPABLE"
+		13 =>  "IDENTIFIED&STOLEN&UNDROPPABLE"
+		11 =>  "IDENTIFIED&UNSTEALABLE&UNDROPPABLE"
+	END
+
+	DEFINE_ASSOCIATIVE_ARRAY itemslots BEGIN
+		0  =>  "HELMET"
+		1  =>  "ARMOR"
+		2  =>  "SHIELD"
+		3  =>  "GLOVES"
+		4  =>  "LRING"
+		5  =>  "RRING"
+		6  =>  "AMULET"
+		7  =>  "BELT"
+		8  =>  "BOOTS"
+		9  =>  "WEAPON1"
+		10 =>  "WEAPON2"
+		11 =>  "WEAPON3"
+		12 =>  "WEAPON4"
+		13 =>  "QUIVER1"
+		14 =>  "QUIVER2"
+		15 =>  "QUIVER3"
+		16 =>  "QUIVER4"
+		17 =>  "CLOAK"
+		18 =>  "QITEM1"
+		19 =>  "QITEM2"
+		20 =>  "QITEM3"
+		21 =>  "INV1"
+		22 =>  "INV2"
+		23 =>  "INV3"
+		24 =>  "INV4"
+		25 =>  "INV5"
+		26 =>  "INV6"
+		27 =>  "INV7"
+		28 =>  "INV8"
+		29 =>  "INV9"
+		30 =>  "INV10"
+		31 =>  "INV11"
+		32 =>  "INV12"
+		33 =>  "INV13"
+		34 =>  "INV14"
+		35 =>  "INV15"
+		36 =>  "INV16"
+	END
+
+	SPRINT path ~./weidu_external/zgtweaks/equipdump/%SOURCE_RES%~
+	SPRINT spilledpath ~./weidu_external/zgtweaks/equipdump/spilled-%SOURCE_RES%~
+	
+	SPRINT data ~~
+	SPRINT spilleddata ~~
+
+	INNER_ACTION BEGIN
+<<<<<<<< %path%
+>>>>>>>>
+
+<<<<<<<< %spilledpath%
+>>>>>>>>
+	END
+
+	READ_LONG  0x2b8 slot_off ELSE 0
+    READ_LONG  0x2bc itm_off ELSE 0
+    READ_LONG  0x2c0 itm_num ELSE 0
+
+	SET spill = 0
+	SPRINT bagslot ~~
+	SET inv8 = 0
+	FOR (index = 0; index < itm_num; ++index) BEGIN
+		SET currentitem = itm_off + index * 0x14
+		READ_ASCII currentitem currentitem_name (8) NULL
+		READ_SHORT (currentitem + 0x08) currentitem_duration
+		READ_SHORT (currentitem + 0x0a) currentitem_charges1
+		READ_SHORT (currentitem + 0x0c) currentitem_charges2
+		READ_SHORT (currentitem + 0x0e) currentitem_charges3
+		READ_LONG (currentitem + 0x10) currentitem_flags_value
+		SPRINT currentitem_flags $itemflags("%currentitem_flags_value%")
+		SET found = 0
+
+		FOR (index2 = 0 ; index2 < 36 ; ++index2) BEGIN
+			READ_SHORT (slot_off + (index2 * 0x02)) ref
+			PATCH_IF ref = index BEGIN
+				found = 1
+				PATCH_IF index2 = 28 BEGIN // cache INV8 slot for the bag
+					SPRINT bagslot ~~~~~ ~%currentitem_name%~ #%currentitem_charges1% #%currentitem_charges2% #%currentitem_charges3% ~%currentitem_flags%~ ~~~~~
+					PATCH_IF currentitem_flags_value < 8 BEGIN
+						inv8 = 1
+					END ELSE BEGIN  // mark if undroppable
+						inv8 = 2
+					END
+				END ELSE BEGIN
+					SET equip = 0
+					SET twohanded = 0
+					SPRINT currentitem_slot $itemslots("%index2%")
+
+					PATCH_IF (index2 > 8 AND index2 < 13) BEGIN
+						READ_SHORT (slot_off + (38 * 0x02)) equipped_weapon
+						PATCH_IF index2 - 9 = equipped_weapon BEGIN
+							equip = 1
+						END
+
+						READ_SHORT (slot_off + (2 * 0x02)) shield
+						PATCH_IF shield = 0xFFFF BEGIN
+							twohanded = 1
+						END
+					END
+
+					PATCH_IF equip = 1 BEGIN
+						PATCH_IF twohanded = 1 BEGIN
+							TEXT_SPRINT append_line ~~~~~ADD_CRE_ITEM ~%currentitem_name%~ #%currentitem_charges1% #%currentitem_charges2% #%currentitem_charges3% ~%currentitem_flags%~ ~%currentitem_slot%~ EQUIP TWOHANDED %WNL%~~~~~
+							SPRINT data ~%data% %append_line%~
+						END ELSE BEGIN
+							TEXT_SPRINT append_line ~~~~~ADD_CRE_ITEM ~%currentitem_name%~ #%currentitem_charges1% #%currentitem_charges2% #%currentitem_charges3% ~%currentitem_flags%~ ~%currentitem_slot%~ EQUIP %WNL%~~~~~
+							SPRINT data ~%data% %append_line%~
+						END
+					END ELSE BEGIN
+						TEXT_SPRINT append_line ~~~~~ADD_CRE_ITEM ~%currentitem_name%~ #%currentitem_charges1% #%currentitem_charges2% #%currentitem_charges3% ~%currentitem_flags%~ ~%currentitem_slot%~ %WNL%~~~~~
+						SPRINT data ~%data% %append_line%~
+					END
+				END
+			END
+		END
+
+		PATCH_IF found = 0 BEGIN // do not stash undroppable items
+			PATCH_IF currentitem_flags_value < 8 BEGIN
+				TEXT_SPRINT append_line ~~~~~ADD_STORE_ITEM ~%currentitem_name%~ #%currentitem_charges1% #%currentitem_charges2% #%currentitem_charges3% ~%currentitem_flags%~ #1 %WNL%~~~~~
+			END ELSE BEGIN
+				TEXT_SPRINT append_line ~~~~~// ADD_STORE_ITEM ~%currentitem_name%~ #%currentitem_charges1% #%currentitem_charges2% #%currentitem_charges3% ~%currentitem_flags%~ #1 %WNL%~~~~~
+			END
+			SPRINT spilleddata ~%spilleddata% %append_line%~
+			spill = 1
+		END
+	END
+	
+	PATCH_IF spill = 0 BEGIN // restore inv8 item if there were no overflow
+		PATCH_IF inv8 > 0 BEGIN
+			TEXT_SPRINT append_bag ~~~~~ADD_CRE_ITEM %bagslot% ~INV8~ %WNL%~~~~~
+			SPRINT data ~%data% %append_bag%~
+		END
+	END ELSE BEGIN
+		PATCH_IF inv8 = 1 BEGIN
+			TEXT_SPRINT append_bag ~~~~~ADD_STORE_ITEM %bagslot% #1 %WNL%~~~~~
+			SPRINT spilleddata ~%spilleddata% %append_bag%~
+		END
+		PATCH_IF inv8 = 2 BEGIN
+			TEXT_SPRINT append_bag ~~~~~// ADD_STORE_ITEM %bagslot% #1 %WNL%~~~~~
+			SPRINT spilleddata ~%spilleddata% %append_bag%~
+		END
+		INNER_ACTION BEGIN
+<<<<<<<< ./weidu_external/zgtweaks/graionbuffer.buf
+%spilleddata%
+>>>>>>>>
+			COPY ~%spilledpath%~ ~%spilledpath%~
+				APPEND_FILE_EVALUATE ~./weidu_external/zgtweaks/graionbuffer.buf~
+		END
+	END
+
+	INNER_ACTION BEGIN
+<<<<<<<< ./weidu_external/zgtweaks/graionbuffer.buf
+%data%
+>>>>>>>>
+		COPY ~%path%~ ~%path%~
+			APPEND_FILE_EVALUATE ~./weidu_external/zgtweaks/graionbuffer.buf~
+	END
+END
+

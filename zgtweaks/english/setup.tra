@@ -11,3 +11,16 @@
 @100 = ~Mixed PnP-BG wisdom-based bonus spells table~
 
 @1000 = ~This component can only be installed on the Enhanced Edition version of the games.~
+@1001 = ~This component can only be installed on the Enhanced Edition and original Baldur's Gate II version of the games.~
+
+@10000 = ~Bag of Spilling (move bugged supposed-to-be-available items to a bag in the creature's inventory)~
+@10001 = ~Bag of Spilling~
+@10002 = ~This coarse bag of holding stores various items. Despite your attempts, you cannot use it to store more items into it and you can only take out the items stored within. You can feel these items were somehow forgotten by their previous owner.
+
+Weight: 5~
+@10003 = ~Coarse Bag of Holding~
+@10004 = ~This bag of holding looks unusual.
+
+STATISTICS:
+
+Weight: 5~
