@@ -196,13 +196,20 @@ BEGIN
 		END
 
 		PATCH_IF found = 0 BEGIN // do not stash undroppable items
-			PATCH_IF currentitem_flags_value < 8 BEGIN
+			SET item_droppable = 0
+			INNER_ACTION BEGIN
+				COPY_EXISTING ~%currentitem_name%.itm~ ~override~
+					READ_LONG 0x18 flags ELSE 0
+					item_droppable = flags BAND 4
+				BUT_ONLY IF_EXISTS
+			END
+			PATCH_IF currentitem_flags_value < 8 AND item_droppable = 4 BEGIN
 				TEXT_SPRINT append_line ~~~~~ADD_STORE_ITEM ~%currentitem_name%~ #%currentitem_charges1% #%currentitem_charges2% #%currentitem_charges3% ~%currentitem_flags%~ #1 %WNL%~~~~~
+				spill = 1
 			END ELSE BEGIN
 				TEXT_SPRINT append_line ~~~~~// ADD_STORE_ITEM ~%currentitem_name%~ #%currentitem_charges1% #%currentitem_charges2% #%currentitem_charges3% ~%currentitem_flags%~ #1 %WNL%~~~~~
 			END
 			SPRINT spilleddata ~%spilleddata% %append_line%~
-			spill = 1
 		END
 	END
 	
