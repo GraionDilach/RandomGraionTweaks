@@ -1,6 +1,6 @@
 BACKUP ~weidu_external/zgtweaks/backup~ // location to store files for uninstall purposes
 AUTHOR ~Graion Dilach~
-VERSION ~1.31~
+VERSION ~1.32~
 
 LANGUAGE ~English~ ~english~ ~zgtweaks/english/setup.tra~
 
@@ -319,5 +319,42 @@ ACTION_PHP_EACH %spilled_creatures% AS crekey => crevalue BEGIN
 		PATCH_REINCLUDE ~weidu_external/zgtweaks/equipdump/spilled-%crevalue%~
 END
 
+COPY ~%MOD_FOLDER%/copy/ZGTRNT.BAM~ ~override~
 
+COPY_EXISTING_REGEXP GLOB ~RNDEQU.*\.ITM~ ~override~
+	LPF PATCH_RANDOM_TREASURE END
+BUT_ONLY IF_EXISTS
 
+COPY_EXISTING_REGEXP GLOB ~RNDWEP.*\.ITM~ ~override~
+	LPF PATCH_RANDOM_TREASURE END
+BUT_ONLY IF_EXISTS
+
+COPY_EXISTING_REGEXP GLOB ~RNDMAG.*\.ITM~ ~override~
+	LPF PATCH_RANDOM_TREASURE END
+BUT_ONLY IF_EXISTS
+
+COPY_EXISTING_REGEXP GLOB ~RNDSCR.*\.ITM~ ~override~
+	LPF PATCH_RANDOM_TREASURE END
+BUT_ONLY IF_EXISTS
+
+COPY_EXISTING_REGEXP GLOB ~RNDTRE.*\.ITM~ ~override~
+	LPF PATCH_RANDOM_TREASURE END
+BUT_ONLY IF_EXISTS
+
+COPY_EXISTING ~RNDTRES.2DA~ ~override~
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+		READ_2DA_ENTRY_FORMER rows row 0 ~rndtreasure~ // read column value
+		PATCH_IF FILE_EXISTS_IN_GAME ~%rndtreasure%.itm~ BEGIN
+			INNER_ACTION BEGIN
+				COPY_EXISTING ~%rndtreasure%.itm~ ~override~
+					LPF PATCH_RANDOM_TREASURE END
+			END
+		END ELSE BEGIN
+			INNER_ACTION BEGIN
+				COPY_EXISTING ~RNDTRE01.ITM~ ~override\%rndtreasure%.itm~
+			END
+		END
+	END
+BUT_ONLY IF_EXISTS
