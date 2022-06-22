@@ -311,7 +311,7 @@ ACTION_PHP_EACH %spilled_creatures% AS crekey => crevalue BEGIN
 	COPY_EXISTING ~%crevalue%.cre~ ~override~
 		REMOVE_CRE_ITEMS
 		PATCH_REINCLUDE ~weidu_external/zgtweaks/equipdump/%crevalue%~
-		ADD_CRE_ITEM ~ZGTB%hexNumber%~ #0 #0 #0 ~IDENTIFIED&UNSTEALABLE~ ~INV1~
+		ADD_CRE_ITEM ~ZGTB%hexNumber%~ #0 #0 #0 ~IDENTIFIED&UNSTEALABLE~ ~INV8~
 	BUT_ONLY
 	
 	COPY ~%MOD_FOLDER%/copy/ZGTBAG.STO~ ~override/ZGTB%hexNumber%.STO~
