@@ -1,6 +1,6 @@
 BACKUP ~weidu_external/zgtweaks/backup~ // location to store files for uninstall purposes
 AUTHOR ~Graion Dilach~
-VERSION ~1.32~
+VERSION ~1.33~
 
 LANGUAGE ~English~ ~english~ ~zgtweaks/english/setup.tra~
 
