@@ -2,7 +2,44 @@ BACKUP ~weidu_external/zgtweaks/backup~ // location to store files for uninstall
 AUTHOR ~Graion Dilach~
 VERSION ~1.33~
 
-LANGUAGE ~English~ ~english~ ~zgtweaks/english/setup.tra~
+ALWAYS
+// do not convert Setup.tra files, those should be UTF8 already
+	ACTION_DEFINE_ARRAY arrayNoConvert BEGIN setup END 
+	ACTION_DEFINE_ARRAY arrayReload BEGIN mod END
+	
+	// define variable for HANDLE_CHARSETS out_path so it can be reused later
+	OUTER_TEXT_SPRINT "HANDLE_CHARSETS_OUT_PATH" EVAL "weidu_external\zgtweaks\lang"
+	
+	LAF HANDLE_CHARSETS
+		INT_VAR
+			from_utf8 = 1
+			infer_charset = 1
+			verbose = 1 // you can disable this if you want to skip verbose output
+		STR_VAR
+			default_language = english
+			tra_path = EVAL "%MOD_FOLDER%"
+			out_path = EVAL "%HANDLE_CHARSETS_OUT_PATH%" // location of converted .tra files
+			noconvert_array = arrayNoConvert
+			reload_array = arrayReload
+	END
+	
+	// for AUTO_TRA: if the game is the enhanced edition, the conversion will not happen so all .tra files should be loaded from "%MOD_FOLDER%\Lang"
+	ACTION_IF (GAME_IS "bgee bg2ee eet iwdee pstee") THEN BEGIN
+		OUTER_TEXT_SPRINT "TRA_LOCATION" EVAL "%MOD_FOLDER%"
+	END
+
+	// for AUTO_TRA: if the game is the classic edition, all converted .tra files will be loaded from HANDLE_CHARSETS out_path
+	ACTION_IF NOT (GAME_IS "bgee bg2ee eet iwdee pstee") THEN BEGIN
+		OUTER_TEXT_SPRINT "TRA_LOCATION" EVAL "%HANDLE_CHARSETS_OUT_PATH%"
+	END
+
+END
+
+AUTO_TRA "%TRA_LOCATION%\%s"
+
+LANGUAGE ~English~ ~english~
+	~zgtweaks/english/setup.tra~
+	~zgtweaks/english/mod.tra~
 
 BEGIN @0
 LABEL ZG-SCROLLS-FOR-MAGES
@@ -269,92 +306,92 @@ LABEL ZG-BAG-OF-SPILLING
 DESIGNATED 10000
 REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet soa tob tutu tutu_totsc bgt ca iwd_in_bg2~) @1000
 
-MKDIR ~./weidu_external/zgtweaks/equipdump~
-ACTION_DEFINE_ARRAY spilled_creatures BEGIN END
-OUTER_SET array_index = 0
+	MKDIR ~./weidu_external/zgtweaks/equipdump~
+	ACTION_DEFINE_ARRAY spilled_creatures BEGIN END
+	OUTER_SET array_index = 0
 
-INCLUDE ~zgtweaks\library\spilling.tpa~
+	INCLUDE ~zgtweaks\library\spilling.tpa~
 
-PRINT ~Dumping creature item data...~
-SILENT
+	PRINT ~Dumping creature item data...~
+	SILENT
 
-COPY_EXISTING_REGEXP GLOB ~.*\.cre~ ~override~
-	LPF DUMP_CRE_ITEM RET spill END
-	PATCH_IF spill = 1 BEGIN
-		SPRINT  $spilled_creatures(~%array_index%~) ~%SOURCE_RES%~
-		array_index += 1
-	END
-BUT_ONLY
-
-VERBOSE
-PRINT ~Moving excessive items to bags...~
-
-COPY ~%MOD_FOLDER%/copy/ZGTBAG.BAM~ ~override~
-
-COPY ~%MOD_FOLDER%/copy/ZGTBAG.ITM~ ~weidu_external/zgtweaks~
-	SAY NAME1 @10003
-	SAY NAME2 @10001
-	SAY DESC @10002
-	SAY UNIDENTIFIED_DESC @10004
-
-OUTER_SET bagindex = 0
-ACTION_PHP_EACH %spilled_creatures% AS crekey => crevalue BEGIN
-	OUTER_SET bagindex += 1
-	ACTION_IF bagindex > 0xFFFF BEGIN
-		FAIL ~Ran out of bag indexes; component failed to install.~
-	END
-
-	LAF TO_HEX_NUMBER INT_VAR value = bagindex RET hexNumber END
-
-	COPY ~weidu_external/zgtweaks/ZGTBAG.ITM~ ~override/ZGTB%hexNumber%.ITM~
-	
-	COPY_EXISTING ~%crevalue%.cre~ ~override~
-		REMOVE_CRE_ITEMS
-		PATCH_REINCLUDE ~weidu_external/zgtweaks/equipdump/%crevalue%~
-		ADD_CRE_ITEM ~ZGTB%hexNumber%~ #0 #0 #0 ~IDENTIFIED&UNSTEALABLE~ ~INV8~
+	COPY_EXISTING_REGEXP GLOB ~.*\.cre~ ~override~
+		LPF DUMP_CRE_ITEM RET spill END
+		PATCH_IF spill = 1 BEGIN
+			SPRINT  $spilled_creatures(~%array_index%~) ~%SOURCE_RES%~
+			array_index += 1
+		END
 	BUT_ONLY
-	
-	COPY ~%MOD_FOLDER%/copy/ZGTBAG.STO~ ~override/ZGTB%hexNumber%.STO~
+
+	VERBOSE
+	PRINT ~Moving excessive items to bags...~
+
+	COPY ~%MOD_FOLDER%/copy/ZGTBAG.BAM~ ~override~
+
+	COPY ~%MOD_FOLDER%/copy/ZGTBAG.ITM~ ~weidu_external/zgtweaks~
+		SAY NAME1 @10003
 		SAY NAME2 @10001
-		PATCH_REINCLUDE ~weidu_external/zgtweaks/equipdump/spilled-%crevalue%~
-END
+		SAY DESC @10002
+		SAY UNIDENTIFIED_DESC @10004
 
-COPY ~%MOD_FOLDER%/copy/ZGTRNT.BAM~ ~override~
+	OUTER_SET bagindex = 0
+	ACTION_PHP_EACH %spilled_creatures% AS crekey => crevalue BEGIN
+		OUTER_SET bagindex += 1
+		ACTION_IF bagindex > 0xFFFF BEGIN
+			FAIL ~Ran out of bag indexes; component failed to install.~
+		END
 
-COPY_EXISTING_REGEXP GLOB ~RNDEQU.*\.ITM~ ~override~
-	LPF PATCH_RANDOM_TREASURE END
-BUT_ONLY IF_EXISTS
+		LAF TO_HEX_NUMBER INT_VAR value = bagindex RET hexNumber END
 
-COPY_EXISTING_REGEXP GLOB ~RNDWEP.*\.ITM~ ~override~
-	LPF PATCH_RANDOM_TREASURE END
-BUT_ONLY IF_EXISTS
+		COPY ~weidu_external/zgtweaks/ZGTBAG.ITM~ ~override/ZGTB%hexNumber%.ITM~
 
-COPY_EXISTING_REGEXP GLOB ~RNDMAG.*\.ITM~ ~override~
-	LPF PATCH_RANDOM_TREASURE END
-BUT_ONLY IF_EXISTS
+		COPY_EXISTING ~%crevalue%.cre~ ~override~
+			REMOVE_CRE_ITEMS
+			PATCH_REINCLUDE ~weidu_external/zgtweaks/equipdump/%crevalue%~
+			ADD_CRE_ITEM ~ZGTB%hexNumber%~ #0 #0 #0 ~IDENTIFIED&UNSTEALABLE~ ~INV8~
+		BUT_ONLY
 
-COPY_EXISTING_REGEXP GLOB ~RNDSCR.*\.ITM~ ~override~
-	LPF PATCH_RANDOM_TREASURE END
-BUT_ONLY IF_EXISTS
+		COPY ~%MOD_FOLDER%/copy/ZGTBAG.STO~ ~override/ZGTB%hexNumber%.STO~
+			SAY NAME2 @10001
+			PATCH_REINCLUDE ~weidu_external/zgtweaks/equipdump/spilled-%crevalue%~
+	END
 
-COPY_EXISTING_REGEXP GLOB ~RNDTRE.*\.ITM~ ~override~
-	LPF PATCH_RANDOM_TREASURE END
-BUT_ONLY IF_EXISTS
+	COPY ~%MOD_FOLDER%/copy/ZGTRNT.BAM~ ~override~
 
-COPY_EXISTING ~RNDTRES.2DA~ ~override~
-	COUNT_2DA_COLS cols // amount of columns
-	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
-	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
-		READ_2DA_ENTRY_FORMER rows row 0 ~rndtreasure~ // read column value
-		PATCH_IF FILE_EXISTS_IN_GAME ~%rndtreasure%.itm~ BEGIN
-			INNER_ACTION BEGIN
-				COPY_EXISTING ~%rndtreasure%.itm~ ~override~
-					LPF PATCH_RANDOM_TREASURE END
-			END
-		END ELSE BEGIN
-			INNER_ACTION BEGIN
-				COPY_EXISTING ~RNDTRE01.ITM~ ~override\%rndtreasure%.itm~
+	COPY_EXISTING_REGEXP GLOB ~RNDEQU.*\.ITM~ ~override~
+		LPF PATCH_RANDOM_TREASURE END
+	BUT_ONLY IF_EXISTS
+
+	COPY_EXISTING_REGEXP GLOB ~RNDWEP.*\.ITM~ ~override~
+		LPF PATCH_RANDOM_TREASURE END
+	BUT_ONLY IF_EXISTS
+
+	COPY_EXISTING_REGEXP GLOB ~RNDMAG.*\.ITM~ ~override~
+		LPF PATCH_RANDOM_TREASURE END
+	BUT_ONLY IF_EXISTS
+
+	COPY_EXISTING_REGEXP GLOB ~RNDSCR.*\.ITM~ ~override~
+		LPF PATCH_RANDOM_TREASURE END
+	BUT_ONLY IF_EXISTS
+
+	COPY_EXISTING_REGEXP GLOB ~RNDTRE.*\.ITM~ ~override~
+		LPF PATCH_RANDOM_TREASURE END
+	BUT_ONLY IF_EXISTS
+
+	COPY_EXISTING ~RNDTRES.2DA~ ~override~
+		COUNT_2DA_COLS cols // amount of columns
+		READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+		FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+			READ_2DA_ENTRY_FORMER rows row 0 ~rndtreasure~ // read column value
+			PATCH_IF FILE_EXISTS_IN_GAME ~%rndtreasure%.itm~ BEGIN
+				INNER_ACTION BEGIN
+					COPY_EXISTING ~%rndtreasure%.itm~ ~override~
+						LPF PATCH_RANDOM_TREASURE END
+				END
+			END ELSE BEGIN
+				INNER_ACTION BEGIN
+					COPY_EXISTING ~RNDTRE01.ITM~ ~override\%rndtreasure%.itm~
+				END
 			END
 		END
-	END
-BUT_ONLY IF_EXISTS
+	BUT_ONLY IF_EXISTS
