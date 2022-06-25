@@ -1,6 +1,6 @@
 BACKUP ~weidu_external/zgtweaks/backup~ // location to store files for uninstall purposes
 AUTHOR ~Graion Dilach~
-VERSION ~1.33~
+VERSION ~1.4~
 
 ALWAYS
 // do not convert Setup.tra files, those should be UTF8 already
@@ -40,6 +40,10 @@ AUTO_TRA "%TRA_LOCATION%\%s"
 LANGUAGE ~English~ ~english~
 	~zgtweaks/english/setup.tra~
 	~zgtweaks/english/mod.tra~
+
+LANGUAGE ~Russian (by yota13)~ ~russian~
+	~zgtweaks/russian/setup.tra~
+	~zgtweaks/russian/mod.tra~
 
 BEGIN @0
 LABEL ZG-SCROLLS-FOR-MAGES
