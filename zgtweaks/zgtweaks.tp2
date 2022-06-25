@@ -316,6 +316,10 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet soa tob tutu tutu_totsc bgt ca 
 	SILENT
 
 	COPY_EXISTING_REGEXP GLOB ~.*\.cre~ ~override~
+		LPF TRY_MOVE_UNAVAILABLE_ITEMS_TO_INVENTORY END
+	BUT_ONLY
+
+	COPY_EXISTING_REGEXP GLOB ~.*\.cre~ ~override~
 		LPF DUMP_CRE_ITEM RET spill END
 		PATCH_IF spill = 1 BEGIN
 			SPRINT  $spilled_creatures(~%array_index%~) ~%SOURCE_RES%~

@@ -134,8 +134,8 @@ BEGIN
 	END
 
 	READ_LONG  0x2b8 slot_off ELSE 0
-    READ_LONG  0x2bc itm_off ELSE 0
-    READ_LONG  0x2c0 itm_num ELSE 0
+	READ_LONG  0x2bc itm_off ELSE 0
+	READ_LONG  0x2c0 itm_num ELSE 0
 
 	SET spill = 0
 	SPRINT bagslot ~~
@@ -151,7 +151,7 @@ BEGIN
 		SPRINT currentitem_flags $itemflags("%currentitem_flags_value%")
 		SET found = 0
 
-		FOR (index2 = 0 ; index2 < 36 ; ++index2) BEGIN
+		FOR (index2 = 0 ; index2 < 37 ; ++index2) BEGIN
 			READ_SHORT (slot_off + (index2 * 0x02)) ref
 			PATCH_IF ref = index BEGIN
 				found = 1
@@ -253,4 +253,31 @@ BEGIN
 	SAY DESC @10006
 	SAY UNIDENTIFIED_DESC @10006
 	WRITE_ASCII 0x3A ~ZGTRNT~ #8
+END
+
+DEFINE_PATCH_FUNCTION TRY_MOVE_UNAVAILABLE_ITEMS_TO_INVENTORY
+BEGIN
+	READ_LONG  0x2b8 slot_off ELSE 0
+	READ_LONG  0x2c0 itm_num ELSE 0
+
+	FOR (index = 0; index < itm_num; ++index) BEGIN
+		SET found = 0
+
+		FOR (index2 = 0 ; index2 < 37 ; ++index2) BEGIN
+			READ_SHORT (slot_off + (index2 * 0x02)) ref
+			PATCH_IF ref = index BEGIN
+				found = 1
+			END
+		END
+
+		PATCH_IF found = 0 BEGIN
+			FOR (index2 = 21 ; index2 < 37 AND found = 0; ++index2) BEGIN
+				READ_SHORT (slot_off + (index2 * 0x02)) ref
+				PATCH_IF ref = 0xFFFF BEGIN
+					WRITE_SHORT (slot_off + (index2 * 0x02)) index
+					found = 1
+				END
+			END
+		END
+	END
 END
