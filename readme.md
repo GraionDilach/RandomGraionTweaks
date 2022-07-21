@@ -44,6 +44,12 @@ The full table:
 
 __COMPATIBILITY:__ This component overwrites Tweaks Anthology's Alter Wisdom-Based Divine Bonus Spell Table component and partially overwrites Scales of Balance's Stat-based Bonus Spells.
 
+## Component 1000 Change Worgs to use IWD2 artwork
+
+Instead of the regular recolored wolf animation.
+
+__COMPATIBILITY:__ This component should be installed after all mods which might add monsters.
+
 ## Component 10000 Bag of Spilling
 
 There is a possibility that installing too many content/item mods pushes out some of the crucial items from a creature's inventory. This component goes through all creatures and collect all such supposed to be __droppable__ but no longer available items and collects them into an unstealable one-way Bag of Spilling to the creature's eighth inventory slot. Undroppable items lost due to megamod installations are not recovered.

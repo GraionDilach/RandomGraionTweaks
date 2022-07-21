@@ -1,6 +1,6 @@
 BACKUP ~weidu_external/zgtweaks/backup~ // location to store files for uninstall purposes
 AUTHOR ~Graion Dilach~
-VERSION ~1.4~
+VERSION ~1.5~
 
 ALWAYS
 // do not convert Setup.tra files, those should be UTF8 already
@@ -303,7 +303,23 @@ BEGIN @100
 LABEL ZG-BOBW-WISDOM-TABLE
 DESIGNATED 100
 
-COPY ~%MOD_FOLDER%/2da/mxsplwis.2da~ ~override~
+	COPY ~%MOD_FOLDER%/2da/mxsplwis.2da~ ~override~
+
+BEGIN @1010
+LABEL ZG-IWD2-WORGS
+DESIGNATED 1000
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
+
+	ACTION_IF NOT FILE_EXISTS_IN_GAME ~MWORA1.BAM~ BEGIN
+		COPY ~%MOD_FOLDER%/copy/worg~ ~override~
+	END
+
+	COPY_EXISTING_REGEXP GLOB ~.*\.cre~ ~override~
+		READ_LONG 0x28 anim
+		PATCH_IF anim = 0x7B01 BEGIN
+			WRITE_LONG 0x28 0xE280
+		END
+		BUT_ONLY
 
 BEGIN @10000
 LABEL ZG-BAG-OF-SPILLING

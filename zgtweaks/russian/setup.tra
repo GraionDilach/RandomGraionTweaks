@@ -13,4 +13,6 @@
 @1000 = ~This component can only be installed on the Enhanced Edition version of the games.~
 @1001 = ~This component can only be installed on the Enhanced Edition and original Baldur's Gate II version of the games.~
 
+@1010 = ~Change Worgs to use IWD2 artwork~
+
 @10000 = ~Bag of Spilling (move bugged supposed-to-be-available items to a bag in the creature's inventory)~
