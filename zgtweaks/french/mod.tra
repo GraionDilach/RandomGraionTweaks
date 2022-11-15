@@ -1,0 +1,12 @@
+@10001 = ~Sac à débordement~
+@10002 = ~Ce sac de contenance rudimentaire permet de conserver divers objets. Malgré vos tentatives, vous ne pouvez pas en ajouter d'autres, mais vous pouvez retirer que ceux qui s'y trouvent déjà. Vous avez la nette impression que ces objets ont été d'une manière ou d'une autre oubliés par leur précédent propriétaire.
+
+Poids : 5~
+@10003 = ~Sac de contenance rudimentaire~
+@10004 = ~Ce sac de contenance a l'air très inhabituel.
+
+PARAMÈTRES :
+
+Poids : 5~
+@10005 = ~Trésor aléatoire~
+@10006 = ~Cet objet contient un trésor aléatoire. Dépose-le sur à terre pour voir ce qu'il y a à l'intérieur !~

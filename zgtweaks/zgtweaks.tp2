@@ -44,6 +44,12 @@ LANGUAGE ~English~ ~english~
 LANGUAGE ~Russian (by yota13)~ ~russian~
 	~zgtweaks/russian/setup.tra~
 	~zgtweaks/russian/mod.tra~
+	
+LANGUAGE ~French~ ~french~
+	~zgtweaks/english/setup.tra~
+	~zgtweaks/english/mod.tra~
+	~zgtweaks/french/setup.tra~
+	~zgtweaks/french/mod.tra~
 
 BEGIN @0
 LABEL ZG-SCROLLS-FOR-MAGES
