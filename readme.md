@@ -65,6 +65,7 @@ __COMPATIBILITY:__ This component needs to come last in your install order. Due 
 ## Acknowledgements
 
 Thanks for argent77, subtledoctor, CamDawg and Luke for code snippets.
+Thanks to yota13 for the Russian and JohnBob for the French translation.
 
 ## Disclaimer
 

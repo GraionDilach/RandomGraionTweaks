@@ -66,6 +66,7 @@ Pour les autres moddeurs : toutes les données d'inventaire sont exportées au f
 ## Remerciements
 
 Thanks for argent77, subtledoctor, CamDawg and Luke for code snippets.
+Thanks to yota13 for the Russian and JohnBob for the French translation.
 
 ## Mentions légales
 
