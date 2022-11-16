@@ -1,6 +1,6 @@
 # Random Graion Tweaks
 
-[### Readme in French](https://github.com/GraionDilach/RandomGraionTweaks/blob/master/readme.French.md)
+### [Readme in French](https://github.com/GraionDilach/RandomGraionTweaks/blob/master/readme.French.md)
 
 This mod features various tweaks by Graion Dilach for games on the Infinity Engine.
 
