@@ -1,5 +1,7 @@
 # Random Graion Tweaks
 
+### [Forum thread on G3](https://www.gibberlings3.net/forums/topic/34458-random-graion-tweaks/)
+
 Ce mod propose diverses modifications de Graion Dilach pour les jeux Infinity Engine.
 
 ## Composants 10 à 23 : Plus de parchemins de sorts aléatoires ( pour Enhanced Editions uniquement)
