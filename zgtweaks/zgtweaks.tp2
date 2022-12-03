@@ -1,6 +1,6 @@
 BACKUP ~weidu_external/zgtweaks/backup~ // location to store files for uninstall purposes
 AUTHOR ~Graion Dilach~
-VERSION ~1.6.1~
+VERSION ~1.7~
 
 ALWAYS
 // do not convert Setup.tra files, those should be UTF8 already
@@ -328,6 +328,49 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
 			WRITE_LONG 0x28 0xE280
 		END
 		BUT_ONLY
+
+BEGIN @1011
+LABEL ZG-SOD-PLANETARS
+DESIGNATED 1001
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet~) @1000
+
+	ACTION_IF NOT FILE_EXISTS_IN_GAME ~mplfg1.BAM~ BEGIN
+		COPY ~%MOD_FOLDER%/copy/planetar~ ~override~
+	END
+
+	COPY_EXISTING ~ca#plan.cre~  ~override~ // Planetar
+		~ohdplanb.cre~ ~override~ // planetar of justice
+		~ohdplanj.cre~ ~override~ // planetar of justice
+		~ohdplanl.cre~ ~override~ // planetar
+		~ohdpplan.cre~ ~override~ // planetar
+		~ohdsolar.cre~ ~override~ // planetar
+		~ohdsplan.cre~ ~override~ // planetar
+		~plangood.cre~ ~override~ // planetar
+		~planet01.cre~ ~override~ // planetar
+		PATCH_IF (SOURCE_SIZE > 0x2d3) BEGIN
+			WRITE_LONG 0x28 0x7F4C
+		END
+		BUT_ONLY IF_EXISTS
+
+	COPY_EXISTING ~ca#fplan.cre~ ~override~ // fallen Planetar
+		~planevil.cre~ ~override~ // planetar
+		~planwish.cre~ ~override~ // planetar
+		~ohbwing.cre~ ~override~ // The Winged
+		~ohbwing2.cre~ ~override~ // The Winged
+		PATCH_IF (SOURCE_SIZE > 0x2d3) BEGIN
+			WRITE_LONG 0x28 0x7F4D
+		END
+		BUT_ONLY IF_EXISTS
+
+	 // revert planetar weapons to one-handed against P&P Celestials and SR
+	 COPY_EXISTING ~ca#planw.itm~ ~override~
+		~dvplangw.itm~ ~override~
+		~dvplanew.itm~ ~override~
+		~ohbwing.itm~ ~override~
+		PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+		  WRITE_ASCII 0x22 ~S1~ // one-handed sword
+		END
+		BUT_ONLY IF_EXISTS
 
 BEGIN @10000
 LABEL ZG-BAG-OF-SPILLING

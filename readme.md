@@ -52,6 +52,12 @@ Instead of the regular recolored wolf animation.
 
 __COMPATIBILITY:__ This component should be installed after all mods which might add monsters.
 
+## Component 1001 Change Planetars to use their SoD solar-based artwork
+
+SoD included Planetar animations derived from the Solar animations, but these animations ended up unused. This component assggns them to the actual planetars.
+
+__COMPATIBILITY:__ This component uses static monster lists, so please report if a planetar was missed. This component can be combined with the animation components of P&P Celestials and Spell Revisions, if you install those first (it will not touch the devas).
+
 ## Component 10000 Bag of Spilling
 
 There is a possibility that installing too many content/item mods pushes out some of the crucial items from a creature's inventory. This component goes through all creatures and collect all such supposed to be __droppable__ but no longer available items and collects them into an unstealable one-way Bag of Spilling to the creature's eighth inventory slot. Undroppable items lost due to megamod installations are not recovered.
