@@ -1,0 +1,88 @@
+WITH_SCOPE BEGIN
+	APPEND ~clabrn01.2da~ ~ZG_CR_RANGER_SPELLSLOTS AP_ZGTCR1 AP_ZGTCR2 AP_ZGTCR3 AP_ZGTCR4 AP_ZGTCR5 AP_ZGTCR6 AP_ZGTCR7 AP_ZGTCR8 AP_ZGTCR9 AP_ZGTCR10 AP_ZGTCR11 AP_ZGTCR12 AP_ZGTCR13 AP_ZGTCR14 AP_ZGTCR15 AP_ZGTCR16 AP_ZGTCR17 AP_ZGTCR18 AP_ZGTCR19 AP_ZGTCR20 AP_ZGTCR21 AP_ZGTCR22 AP_ZGTCR23 AP_ZGTCR24 AP_ZGTCR25 AP_ZGTCR26 AP_ZGTCR27 AP_ZGTCR28 AP_ZGTCR29 AP_ZGTCR30 AP_ZGTCR31 AP_ZGTCR32 AP_ZGTCR33 AP_ZGTCR34 AP_ZGTCR35 AP_ZGTCR36 AP_ZGTCR37 AP_ZGTCR38 AP_ZGTCR39 AP_ZGTCR40 AP_ZGTCR41 AP_ZGTCR42 AP_ZGTCR43 AP_ZGTCR44 AP_ZGTCR45 AP_ZGTCR46 AP_ZGTCR47 AP_ZGTCR48 AP_ZGTCR49 AP_ZGTCR50~
+
+	COPY_EXISTING ~clabrn01.2da~ ~override~
+		// Ensure all table rows have valid number of columns.
+		// Missing headers are padded by column indices. Missing content is padded by default value.
+		SET num_added = 0
+		COUNT_2DA_COLS num_cols
+		READ_2DA_ENTRIES_NOW table 1
+		READ_2DA_ENTRY_FORMER table 1 0 default
+		FOR (row = 0; row < table; ++row) BEGIN
+		  READ_2DA_ENTRY_FORMER table row 0 line
+		  FOR (col = 1; col < num_cols && VARIABLE_IS_SET $table(~%row%~ ~%col%~); ++col) BEGIN
+			READ_2DA_ENTRY_FORMER table row col v
+			TEXT_SPRINT line ~%line% %v%~
+		  END
+		  // fill in missing data
+		  PATCH_IF (row = 2) BEGIN  // header
+			FOR (; col < num_cols - 1; ++col) BEGIN
+			  TEXT_SPRINT line ~%line% %col%~
+			  SET num_added += 1
+			END
+		  END ELSE PATCH_IF (row > 2) BEGIN // content
+			FOR (; col < num_cols; ++col) BEGIN
+			  TEXT_SPRINT line ~%line% %default%~
+			  SET num_added += 1
+			END
+		  END
+		  TEXT_SPRINT $lines(~%row%~) ~%line%%LNL%~
+		  SET $lines(~%row%~ ~size~) = STRING_LENGTH $lines(~%row%~)
+		END
+	  
+		// write normalized table to buffer
+		PATCH_IF (num_added > 0) BEGIN
+		  DELETE_BYTES 0 BUFFER_LENGTH
+		  FOR (row = 0 pos = 0; row < table; ++row) BEGIN
+			SET size = $lines(~%row%~ ~size~)
+			INSERT_BYTES pos size
+			WRITE_ASCIIE pos $lines(~%row%~) (size)
+			SET pos += size
+		  END
+		END
+		PRETTY_PRINT_2DA
+	BUT_ONLY
+
+	OUTER_FOR (index = 1; index < 51; ++index) BEGIN
+		COPY ~zgtweaks\rcslots\zgtcr.spl~ ~override/zgtcr%index%.spl~
+	END
+
+	COPY ~zgtweaks\rcslots\zgtrl1.eff~ ~override~
+	COPY ~zgtweaks\rcslots\zgtrl2.eff~ ~override~
+	COPY ~zgtweaks\rcslots\zgtrl3.eff~ ~override~
+	COPY ~zgtweaks\rcslots\zgtrl4.eff~ ~override~
+	COPY ~zgtweaks\rcslots\zgtrl5.eff~ ~override~
+	COPY ~zgtweaks\rcslots\zgtrl6.eff~ ~override~
+	COPY ~zgtweaks\rcslots\zgtrl7.eff~ ~override~
+
+	OUTER_SET level1 = 0
+	OUTER_SET level2 = 0
+	OUTER_SET level3 = 0
+	OUTER_SET level4 = 0
+	OUTER_SET level5 = 0
+	OUTER_SET level6 = 0
+	OUTER_SET level7 = 0
+
+	COPY_EXISTING ~mxsplran.2da~ ~override~
+		COUNT_2DA_COLS colcount
+		COUNT_2DA_ROWS colcount rowcount
+		FOR (row=0; row < rowcount; ++row) BEGIN
+			READ_2DA_ENTRY row 0 colcount level
+			FOR (col=1; col < colcount; ++col) BEGIN
+				READ_2DA_ENTRY row col colcount target
+				SPRINT levelcol ~level%col%~
+				SPRINT effname ~zgtrl%col%~
+				SPRINT spellname ~zgtcr%level%.spl~
+				INNER_ACTION BEGIN
+					COPY_EXISTING ~%spellname%~ ~override~
+						SET current = (EVAL ~%%levelcol%%~)
+						FOR (; current < target; ++current) BEGIN
+							LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 1 timing = 9 resist_dispel = 0 power = 0 parameter1 = 18 parameter2 = 5 STR_VAR resource = EVAL ~%effname%~ END
+						END
+						SET EVAL ~%levelcol%~ = current
+					BUT_ONLY
+				END
+			END
+		END
+	BUT_ONLY
+END
