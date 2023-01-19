@@ -16,4 +16,6 @@
 @1010 = ~Change Worgs to use IWD2 artwork~
 @1011 = ~Change Planetars to use their SoD solar-based artwork~
 
+@9999 = ~Equip items from inventory to fill empty slots~
+
 @10000 = ~Bag of Spilling (move bugged supposed-to-be-available items to a bag in the creature's inventory)~

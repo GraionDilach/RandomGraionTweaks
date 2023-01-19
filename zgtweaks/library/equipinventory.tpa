@@ -1,0 +1,214 @@
+ACTION_DEFINE_ASSOCIATIVE_ARRAY remap_itemcategories BEGIN
+	// 0 Misc, skipped
+	1  => 6		// Amulets and necklaces
+	2  => 1		// Armor
+	3  => 7		// Belts and girdles
+	4  => 8		// Boots
+	5  => 13	// Arrows
+	6  => 3		// Bracers and gauntlets
+	7  => 0		// Headgear (Helms, hats, and other head-wear)
+	9  => 18	// Potions
+	10 => 4		// Rings
+	11 => 18	// Scrolls
+	12 => 2		// Shields (not in IWD)
+	// 13 Food, skipped
+	14 => 13	// Bullets (for a sling)
+	15 => 9		// Bows
+	16 => 9		// Daggers
+	17 => 9		// Maces (in BG, this includes clubs)
+	18 => 9		// Slings
+	19 => 9		// Small swords
+	20 => 9		// Large swords
+	21 => 9		// Hammers
+	22 => 9		// Morning stars
+	23 => 9		// Flails
+	24 => 9		// Darts
+	25 => 9		// Axes (specifically, 1-handed axes -- halberds and 2-handed polearms not included)
+	26 => 9		// Quarterstaff
+	27 => 9		// Crossbow
+	28 => 9		// Hand-to-hand weapons (fist, fist irons, punch daggers, etc)
+	29 => 9		// Spears
+	30 => 9		// Halberds (2-handed polearms)
+	31 => 13	// Crossbow bolts
+	32 => 17	// Cloaks
+	// 33 Gold, skipped
+	// 34 Gems, skipped
+	35 => 18	// Wands
+	// 36 Container, skipped
+	// 37 Books, skipped
+	// 38 Famiiliars, skipped
+	// 39 Tattoos, skiipped
+	// 40 Lenses, skipped
+	41 => 2 	// Bucklers
+	// 42 Candles, skipped
+	// 43 Child bodies, skipped
+	44 => 9		// Clubs (IWD)
+	// 45 female bodies, skipped
+	// 46 keys, skipped
+	47 => 2		// Large Shields (IWD)
+	// 48 male bodies, skipped
+	49 => 2		// Medium Shields (IWD)
+	// 50 Notes, skipped
+	// 51 Rods, skipped
+	// 52 Skulls, skipped
+	53 => 2		// Small Shields (IWD)
+	// 54 spider bodies, skipped
+	// 55 telescopes, skipped
+	// 56 drinks, skipped
+	57 => 9		// Great Swords (IWD)
+	// 58 Bags, skipped
+	// 59 Furs & pelts, skipped
+	60 => 1		// Leather Armor
+	61 => 1		// Studded Leather Armor
+	62 => 1		// Chain Mail
+	63 => 1		// Splint Mail
+	64 => 1		// Half Plate
+	65 => 1		// Full Plate
+	66 => 1		// Hide Armor
+	67 => 1		// Robes
+	68 => 1		// Scale Mail
+	69 => 9		// Bastard Swords (IWD)
+	// 70 Scarves, skipped
+	// 71 Rations, skipped
+	72 => 0		// Hats
+	73 => 3		// Gloves
+END
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY remap_slotcount BEGIN
+	5  => 17 // quiver
+	9  => 21 // quick item
+	10 => 6  // ring
+	11 => 21 // quick item
+	14 => 17 // quiver
+	15 => 13 // weapon
+	16 => 13 // weapon
+	17 => 13 // weapon
+	18 => 13 // weapon
+	19 => 13 // weapon
+	20 => 13 // weapon
+	21 => 13 // weapon
+	22 => 13 // weapon
+	23 => 13 // weapon
+	24 => 13 // weapon
+	25 => 13 // weapon
+	26 => 13 // weapon
+	27 => 13 // weapon
+	28 => 13 // weapon
+	29 => 13 // weapon
+	30 => 13 // weapon
+	31 => 16 // quiver
+	38 => 21 // quick item
+	44 => 13 // weapon
+	57 => 13 // weapon
+	69 => 13 // weapon
+END
+
+DEFINE_PATCH_FUNCTION TRY_EQUIPPING_ALL_ITEMS
+BEGIN
+	READ_LONG  0x2b8 slot_off ELSE 0
+	READ_LONG  0x2bc itm_off ELSE 0
+	READ_LONG  0x2c0 itm_num ELSE 0
+
+	FOR (index = 0; index < itm_num; ++index) BEGIN
+		SET found = 0
+		SET category = (0 - 1)
+
+		// CHECK IF ITEM IS EQUIPPED ALREADY
+
+		FOR (index2 = 0 ; index2 < 21 ; ++index2) BEGIN
+			READ_SHORT (slot_off + (index2 * 0x02)) ref
+			PATCH_IF ref = index BEGIN
+				found = 1
+			END
+		END
+
+		// READ IN MAGIC WEAPON
+
+		READ_SHORT (slot_off + (37 * 0x02)) ref
+		PATCH_IF ref = index BEGIN
+			found = 1
+		END
+
+		PATCH_IF found = 0 BEGIN
+
+			// READ ITEM CATEGORY
+
+			SET currentitem = itm_off + index * 0x14
+			READ_ASCII currentitem currentitem_name (8) NULL
+			INNER_ACTION BEGIN
+				ACTION_IF FILE_EXISTS_IN_GAME ~%currentitem_name%.itm~ BEGIN
+					COPY_EXISTING ~%currentitem_name%.itm~ ~override~
+						READ_SHORT 0x1c category
+						// DO NOT EQUIP NONMAGIC JEWELLERY
+						PATCH_IF (category == 10 OR category == 1) BEGIN
+							READ_SHORT 0x68 abils
+							READ_SHORT 0x70 effects
+							PATCH_IF (abils == 0 AND effects == 0) BEGIN
+								SET category = (0 - 1)
+							END
+						END
+					BUT_ONLY
+				END
+			END
+
+			// EQUIP ITEM
+
+			PATCH_IF (VARIABLE_IS_SET $remap_itemcategories(~%category%~)) BEGIN
+				PATCH_IF (VARIABLE_IS_SET $remap_slotcount(~%category%~)) BEGIN
+					FOR (index3 = $remap_itemcategories(~%category%~) ; index3 < $remap_slotcount(~%category%~) AND found = 0 ; ++index3) BEGIN
+						READ_SHORT (slot_off + (index3 * 0x02)) ref
+						PATCH_IF ref = 0xFFFF BEGIN
+							WRITE_SHORT (slot_off + (index3 * 0x02)) index
+							found = 2
+						END
+					END
+				END ELSE BEGIN
+					READ_SHORT (slot_off + ($remap_itemcategories(~%category%~) * 0x02)) ref
+					PATCH_IF ref = 0xFFFF BEGIN
+						WRITE_SHORT (slot_off + ($remap_itemcategories(~%category%~) * 0x02)) index
+						found = 2
+					END
+				END
+			END
+		END
+
+		// REMOVE FROM BACKPACK IF SUCCESSFULLY EQUIPPED
+
+		PATCH_IF found = 2 BEGIN
+			FOR (index2 = 21 ; index2 < 37 AND found = 2; ++index2) BEGIN
+				READ_SHORT (slot_off + (index2 * 0x02)) ref
+				PATCH_IF ref = index BEGIN
+					WRITE_SHORT (slot_off + (index2 * 0x02)) 0xFFFF
+					found = 1
+				END
+			END
+		END
+
+		// OTHERWISE CHECK IF BACKPACK HAS IT
+
+		PATCH_IF found = 0 BEGIN
+			FOR (index2 = 21 ; index2 < 37 AND found = 0; ++index2) BEGIN
+				READ_SHORT (slot_off + (index2 * 0x02)) ref
+				PATCH_IF ref = index BEGIN
+					found = 1
+				END
+			END
+		END
+
+		// PLACE IT TO BACKPACK IF IT WAS MISSING FROM THERE EVEN
+
+		PATCH_IF found = 0 BEGIN
+			FOR (index2 = 21 ; index2 < 37 AND found = 0; ++index2) BEGIN
+				READ_SHORT (slot_off + (index2 * 0x02)) ref
+				PATCH_IF ref = 0xFFFF BEGIN
+					WRITE_SHORT (slot_off + (index2 * 0x02)) index
+					found = 1
+				END
+			END
+		END
+	END
+END
+
+COPY_EXISTING_REGEXP GLOB ~.*\.cre~ ~override~
+	LPF TRY_EQUIPPING_ALL_ITEMS END
+BUT_ONLY

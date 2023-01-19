@@ -1,6 +1,6 @@
 BACKUP ~weidu_external/zgtweaks/backup~ // location to store files for uninstall purposes
 AUTHOR ~Graion Dilach~
-VERSION ~1.7~
+VERSION ~1.8~
 
 ALWAYS
 // do not convert Setup.tra files, those should be UTF8 already
@@ -42,10 +42,10 @@ LANGUAGE ~English~ ~english~
 	~zgtweaks/english/mod.tra~
 
 LANGUAGE ~Russian (by yota13)~ ~russian~
-	~zgtweaks/russian/setup.tra~
-	~zgtweaks/russian/mod.tra~
 	~zgtweaks/english/setup.tra~
 	~zgtweaks/english/mod.tra~
+	~zgtweaks/russian/setup.tra~
+	~zgtweaks/russian/mod.tra~
 	
 LANGUAGE ~French~ ~french~
 	~zgtweaks/english/setup.tra~
@@ -371,6 +371,13 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet~) @1000
 		  WRITE_ASCII 0x22 ~S1~ // one-handed sword
 		END
 		BUT_ONLY IF_EXISTS
+
+BEGIN @9999
+LABEL ZG-EQUIP-WHAT-I-CAN
+DESIGNATED 9999
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet soa tob tutu tutu_totsc bgt ca iwd_in_bg2~) @1000
+
+	INCLUDE ~zgtweaks\library\equipinventory.tpa~
 
 BEGIN @10000
 LABEL ZG-BAG-OF-SPILLING
