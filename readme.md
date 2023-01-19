@@ -46,6 +46,12 @@ The full table:
 
 __COMPATIBILITY:__ This component overwrites Tweaks Anthology's Alter Wisdom-Based Divine Bonus Spell Table component and partially overwrites Scales of Balance's Stat-based Bonus Spells.
 
+## Component 101 Grant Ranger spell slots to Cleric-Ranger multiclasses
+
+By default, the Infinity Engine only grants Cleric spell slots to C/R multiclasses. This component allows C/Rs to receive the Ranger spell slots as well, tied to the character's ranger level.
+
+__COMPATIBILITY:__ This component shouldn't conflict with other mods. You need to install it after all mod components which would change the amount of ranger spell slots though.
+
 ## Component 1000 Change Worgs to use IWD2 artwork
 
 Instead of the regular recolored wolf animation.
@@ -58,6 +64,12 @@ SoD included Planetar animations derived from the Solar animations, but these an
 
 __COMPATIBILITY:__ This component uses static monster lists, so please report if a planetar was missed. This component can be combined with the animation components of P&P Celestials and Spell Revisions, if you install those first (it will not touch the devas).
 
+## Component 9999 Equip items from inventory to fill empty slots
+
+This component goes through creature inventories and attempt to equip all the items which the creature has a spare inventory slot for. Already-equipped items are not changed or touched.
+
+__COMPATIBILITY:__ This component is similar to a component in Lolfixer, except that this one does not attempt to move already-equipped items. For best results, it should be installed after all mods which add items to the game.
+
 ## Component 10000 Bag of Spilling
 
 There is a possibility that installing too many content/item mods pushes out some of the crucial items from a creature's inventory. This component goes through all creatures and collect all such supposed to be __droppable__ but no longer available items and collects them into an unstealable one-way Bag of Spilling to the creature's eighth inventory slot. Undroppable items lost due to megamod installations are not recovered.
@@ -66,7 +78,7 @@ See [here](https://www.gibberlings3.net/forums/topic/35016-do-cres-drop-all-thei
 
 For other modders: all the inventory data are exported to plaintext to weidu_external\zgtweaks\equipdump\(spilled-)FILENAME format for possible review. Undroppable spilled items are also listed and commented out.
 
-__COMPATIBILITY:__ This component needs to come last in your install order. Due to the principle this mod component works, it is possible it exposes a bug in itself and/or in a different mod. Please report any suspicious content you see in these bags.
+__COMPATIBILITY:__ This component needs to come last in your install order. Due to the principle this mod component works, it is possible it exposes a bug in itself and/or in a different mod. Please report any suspicious content you see in these bags. This component can be combined wiith the "Equip items from inventory to fill empty slots" component above, but that one must come before this one.
 
 ## Acknowledgements
 
