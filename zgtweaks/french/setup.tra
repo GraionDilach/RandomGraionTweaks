@@ -9,13 +9,17 @@
 @7 = ~Un parchemin de sort divin egale ou inferieur a 4 niveaux de moins que le plus haut niveau de sort profane memorise.~
 
 @100 = ~Table mixte PnP-BG de sorts supplementaires bases sur la sagesse~
+@101 = ~Accorder les emplacements de sorts du Rodeur aux multiclasses Clerc / Rodeur.~
 
 @1000 = ~Ce composant ne peut etre installe que sur les version Enhanced Edition des jeux.~
 @1001 = ~Ce composant ne peut etre installe que sur les version Enhanced Edition des jeux et Baldur's Gate II original.~
 
 @1010 = ~Modifier les Worgs afin qu'ils utilisent les animations de IWD2~
+@1011 = ~Modifier les Planetaires afin qu'ils utilisent les animations prevu pour SoD~
 
-@10000 = ~Sac a debordement (deplacer les objets censes etre disponibles dans un sac de contenance place dans l'inventaire de la creature.)~
+@9999 = ~Equiper les objets presents dans l'inventaire des creatures si des emplacements sont disponibles.~
+
+@10000 = ~Sac a debordement (deplacer les objets censes etre disponibles dans un sac de contenance pour les creature n'ayant pas assez d'emplacement dans leur inventaire.)~
 
 
 /* =============== *
