@@ -4,7 +4,7 @@
 
 Ce mod propose diverses modifications de Graion Dilach pour les jeux Infinity Engine.
 
-## Composants 10 à 23 : Plus de parchemins de sorts aléatoires ( pour Enhanced Editions uniquement)
+## Composants 10 à 23 : Plus de parchemins de sorts aléatoires ( pour Enhanced Editions uniquement).
 
 Inspiré par le composant "Plus vaste selection de parchemins aleatoires" de SCS, RandomGraionTweaks ajoute des parchemins de sorts aléatoires en possession des lanceurs de sorts profanes / divins. Les parchemins ajoutés par des mods sont inclus uniquement s'ils suivent la procédure standard de spell.ids (les parchemins de sorts ajoutés par OlvynChuru ClassSpellTool ne sont pas pris en compte). Les parchemins de sorts en double sont filtrés et retirés.
 
@@ -25,7 +25,7 @@ Cela signifie qu'un Clerc / Mage de haut niveau peut obtenir jusqu'à 8 parchemi
 
 **COMPATIBILITÉ** : Ces composants doivent être installés après tous les mods qui pourraient améliorer l'IA des lanceurs de sorts (SCS). Ces composants on une fonction similaire à "Plus vaste sélection de parchemins aléatoires" de SCS, mais ils peuvent être installés ensemble. Ces composants **doivent** absolument être installés après le mod [Abel's Nonrandom Treasures](https://forums.beamdog.com/discussion/83483/mod-nonrandom-treasures) pour IWDEE.
 
-## Composant 100 Table mixte PnP-BG de sorts supplémentaires basés sur la sagesse
+## Composant 100 Table mixte PnP-BG de sorts supplémentaires basés sur la sagesse.
 
 Cela a été évoqué lors du développement du EE Fixpack, Bioware a fait une erreur en implémentant la façon dont les sorts supplémentaires sont configurés (ce qui n'a été corrigée que dans PST), en conséquence plus de sorts supplémentaires de niveau intermédiaire et moins de sorts supplémentaires de bas niveau. Ce composant tente de mélanger les deux options de sorte que les joueurs bénéficient des bonus pour les deux tables mais de manière cohérente, à l'exception d'une mise en garde : PnP et BG accordent le premier sort supplémentaire de niveau 4 pour une Sagesse de 18, ce qui rompt la logique, il est donc différé.
 
@@ -49,13 +49,32 @@ Le tableau complet :
 
 **COMPATIBILITÉ** : Ce composant écrase le composant "Modifier la table des sorts divins en bonus lies à la sagesse" de Tweaks Anthology et écrase partiellement les sorts supplémentaires basés sur les statistiques de Scales of Balance.
 
-## Composant 1000 Modifier les Worgs afin qu'ils utilisent les animations de IWD2
+## Composant 101 Accorder les emplacements de sorts du Rôdeur aux multiclasses Clerc / Rôdeur.
+
+Par défaut, les jeux Infinity Engine n'accorde que le nombre d'emplacements de sorts disponibles pour les clercs aux personnages multiclassés Clerc / Rôdeur. Ce composant permet aux Clerc / Rôdeur de bénéficier également des emplacements de sorts accordés aux rôdeurs, en fonction du niveau du Rôdeur. (Ils pourront donc mémoriser plus de sorts...)
+
+**COMPATIBILITÉ** : Ce composant ne devrait pas entrer en conflit avec d'autres mods. Vous devez l'installer après tous les mods et composants qui pourraient modifier le nombre d'emplacements disponibles pour les sorts de rôdeur.
+
+
+## Composant 1000 Modifier les Worgs afin qu'ils utilisent les animations de IWD2.
 
 En lieu et place de l'animation du loup simplement recoloré.
 
 **COMPATIBILITÉ** : Ce composant devrait être installé après tous les mods qui ajoutent des monstres.
 
-## Composant 10000 Sac à débordement
+## Composant 1001 Modifier les Planétaires afin qu'ils utilisent les animations prévu pour SoD.
+
+SoD inclut des animations pour les Planétaires inspirées des animations des Solaires, mais finalement ces animations sont restées inutilisées. Ce composant les associe donc aux planétaires.
+
+**COMPATIBILITÉ** : Ce composant utilise une listes prédéfinie de créatures, merci de nous signaler si un planétaire a été oublié. Ce composant peut être utilisé avec les composants d'animation de P&P Celestials et Spell Revisions, si vous les installez en premier (Les Devas ne sont pas modifiés).
+
+## Composant 9999 Équiper les objets présents dans l'inventaire des créatures si des emplacements sont disponibles.
+
+Ce composant passe en revue les inventaires des créatures et tente d'équiper tous les objets pour lesquels la créature a un emplacement de libre. Les objets déjà équipés ne sont pas altérés ou déplacés.
+
+**COMPATIBILITÉ** : Ce composant est similaire à celui de Lolfixer, sauf qu'il ne tente pas de déplacer les objets déjà équipés. Pour un résultat optimal, il devrait être installé après tous les mods qui ajoutent des objets dans le jeu.
+
+## Composant 10000 Sac à débordement.
 
 Il est possible que l'installation d'un trop grand nombre de mods qui ajoutent du contenu ou des objets fasse disparaître de l'inventaire d'une créature certains objets essentiels. Ce composant passe en revue toutes les créatures et recueille tous les objets censés être **récupérables** mais n'ayant plus de place dans l'inventaire et les rassemble dans un sac à débordement dans le huitième emplacement de l'inventaire de la créature  (ce sac ne peut être subtilisé par la compétence Vol à la tire et ne peut être utilisé que pour récupérer les objets déjà présent à l’intérieur). Les objets non récupérables disparus à cause de l'installation de mégamods ne sont pas restaurés.
 
