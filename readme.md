@@ -6,7 +6,7 @@ This mod features various tweaks by Graion Dilach for games on the Infinity Engi
 
 ## Components 10-23 More Random Spell Scrolls (EE games only)
 
-Inspired by SCS's "Wider spell scrolls" component, these components add random arcane spell scrolls the arcane/divine spellcasters. The random spell scrolls include mod-added scrolls only _if they follow the spell.ids standard_ currently (scrolls of spells added through the OlvynChuru ClassSpellTool v2023-02-08 are included since v1.9). Duplicate spell scrolls are filtered out.
+Inspired by SCS's "Wider spell scrolls" component, these components add random arcane spell scrolls the arcane/divine spellcasters. The random spell scrolls include mod-added scrolls only _if they either follow the spell.ids standard or was added with OlvynChurzu's ClassSpellTool library, dated 2023-02-08 or later_ . Duplicate spell scrolls are filtered out.
 
 The following combinations are offered (each can be selected individiually):
  - __10:__ one arcane scroll on the level of the highest arcane level memorized
