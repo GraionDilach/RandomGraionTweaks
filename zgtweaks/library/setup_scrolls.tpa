@@ -39,6 +39,9 @@ DEFINE_ACTION_FUNCTION setup_random_scrolls BEGIN
 										PRINT ~Duplicate scroll detected: %scroll_name% for %splres%; skipping...~
 										OUTER_SET handled = 1
 									END
+								END ELSE BEGIN
+									PRINT ~Ignored scroll detected: %scroll_name% for %splres%; skipping...~
+									OUTER_SET handled = 1
 								END
 							END
 						END
@@ -59,14 +62,23 @@ DEFINE_ACTION_FUNCTION setup_random_scrolls BEGIN
 											ACTION_IF (EVAL ~%%spellswithscrolls%%~ STRING_CONTAINS_REGEXP EVAL ~%splres%~) THEN BEGIN
 												OUTER_TEXT_SPRINT EVAL ~%spell_level%~ EVAL ~%%spell_level%% %scroll_name%~
 												OUTER_TEXT_SPRINT spellswithscrolls ~%spellswithscrolls% %splres%~
+												OUTER_SET handled = 1
 											END ELSE BEGIN
 												PRINT ~Duplicate scroll detected: %scroll_name% for %splres%; skipping...~
+												OUTER_SET handled = 1
 											END
+										END ELSE BEGIN
+											PRINT ~Ignored scroll detected: %scroll_name% for %splres%; skipping...~
+											OUTER_SET handled = 1
 										END
 									END
 								END
 							END
 						END
+					END
+
+					PATCH_IF handled = 0 BEGIN
+						PATCH_PRINT ~Scroll %scroll_name% belongs to non-validated spell %splres%; skipping...~
 					END
 				END
 			END
