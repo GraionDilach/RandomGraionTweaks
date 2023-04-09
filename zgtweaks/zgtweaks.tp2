@@ -1,6 +1,6 @@
 BACKUP ~weidu_external/zgtweaks/backup~ // location to store files for uninstall purposes
 AUTHOR ~Graion Dilach~
-VERSION ~1.9~
+VERSION ~1.10~
 
 ALWAYS
 // do not convert Setup.tra files, those should be UTF8 already
@@ -306,6 +306,53 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
 		SET max_spell_level = 0
 		BUT_ONLY
 
+BEGIN @31 SUBCOMPONENT @30
+LABEL ZG-DROP-MAGIC-ARROWS-100
+DESIGNATED 31
+
+	OUTER_SET magic_arrow_stack_modifier = 100
+
+	INCLUDE ~%MOD_FOLDER%/library/dropmagicarrows.tpa~
+
+BEGIN @32 SUBCOMPONENT @30
+LABEL ZG-DROP-MAGIC-ARROWS-75
+DESIGNATED 32
+
+	OUTER_SET magic_arrow_stack_modifier = 75
+
+	INCLUDE ~%MOD_FOLDER%/library/dropmagicarrows.tpa~
+
+BEGIN @33 SUBCOMPONENT @30
+LABEL ZG-DROP-MAGIC-ARROWS-66
+DESIGNATED 33
+
+	OUTER_SET magic_arrow_stack_modifier = 66
+
+	INCLUDE ~%MOD_FOLDER%/library/dropmagicarrows.tpa~
+
+BEGIN @34 SUBCOMPONENT @30
+LABEL ZG-DROP-MAGIC-ARROWS-50
+DESIGNATED 34
+
+	OUTER_SET magic_arrow_stack_modifier = 50
+
+	INCLUDE ~%MOD_FOLDER%/library/dropmagicarrows.tpa~
+
+BEGIN @35 SUBCOMPONENT @30
+LABEL ZG-DROP-MAGIC-ARROWS-33
+DESIGNATED 35
+
+	OUTER_SET magic_arrow_stack_modifier = 33
+
+	INCLUDE ~%MOD_FOLDER%/library/dropmagicarrows.tpa~
+
+BEGIN @36 SUBCOMPONENT @30
+LABEL ZG-DROP-MAGIC-ARROWS-25
+DESIGNATED 36
+
+	OUTER_SET magic_arrow_stack_modifier = 25
+
+	INCLUDE ~%MOD_FOLDER%/library/dropmagicarrows.tpa~
 
 BEGIN @100
 LABEL ZG-BOBW-WISDOM-TABLE

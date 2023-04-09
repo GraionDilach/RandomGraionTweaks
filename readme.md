@@ -22,6 +22,18 @@ This means that a high-level Cleric-Mage can end up with up to 8 additional scro
 
 __COMPATIBILITY:__ These components should be installed after all mods which might buff spellcaster AI (SCS). These components functionally overlap with SCS's "Wider spell scrolls" but they can be installed together. These components __need__ to be installed after [Abel's Nonrandom Treasures](https://forums.beamdog.com/discussion/83483/mod-nonrandom-treasures) mod on IWDEE.
 
+## Components 3X Replace nondroppable magic arrow clones with their droppable counterparts
+
+Depending on the subcomponent chosen, the quantity of the arrows in the stack will be decreased.
+- __31:__ Keep 100% of the stack (no change on amount)
+- __32:__ Keep 75% of the stack
+- __33:__ Keep 66% of the stack
+- __34:__ Keep 50% of the stack
+- __35:__ Keep 33% of the stack
+- __36:__ Keep 25% of the stack
+
+__COMPATIBILITY:__ This component wasn't tested against Item Revisions and doesn't consider changes from that mod. These components won't change individual arrow stacks which are marked as non-droppable on creatures.
+
 ## Component 100 Mixed PnP-BG wisdom-based bonus spells table
 
 As discussed during the development of the EE Fixpack, Bioware made an error when they implemented a feature with the way the bonus spells are set up (which was only fixed in PST), resulting with more bonus mid-level spells and less low-level bonus spells than intended. This component tries to blend both options so that players will end up having the bonuses of both tables consistently excluding one caveat: both PnP and BG provides the first level 4 bonus spells on Wisdom 18 which breaks a pattern and is thereby delayed.

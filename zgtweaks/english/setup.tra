@@ -8,6 +8,14 @@
 @6 = ~Add random arcane spell scrolls to divine casters up until their highest memorized level~
 @7 = ~Add random arcane spell scrolls to divine casters up until their highest memorized level - 4~
 
+@30 = ~Replace nondroppable magic arrow clones with droppable counterparts~
+@31 = ~Do not change amounts in affected stacks~
+@32 = ~Decrease affected arrow stacks to 75%~
+@33 = ~Decrease affected arrow stacks to 66%~
+@34 = ~Decrease affected arrow stacks to 50%~
+@35 = ~Decrease affected arrow stacks to 33%~
+@36 = ~Decrease affected arrow stacks to 25%~
+
 @100 = ~Mixed PnP-BG wisdom-based bonus spells table~
 @101 = ~Grant Ranger spell slots to Cleric-Ranger multiclasses~
 
