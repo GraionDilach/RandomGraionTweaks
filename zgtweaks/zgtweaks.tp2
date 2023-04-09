@@ -79,7 +79,7 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
 			END
 		END
 		PATCH_IF (max_spell_level > 0) BEGIN
-			ADD_CRE_ITEM ~ZGTRWS%max_spell_level%~ #1 #0 #0 ~NONE~ ~QITEM INV~
+			ADD_CRE_ITEM ~ZGTRWS%max_spell_level%~ #1 #0 #0 ~NONE~ ~INV QITEM~
 		END
 		SET max_spell_level = 0
 		BUT_ONLY
@@ -111,7 +111,7 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
 		END
 		PATCH_IF (max_spell_level > 4) BEGIN
 			SET secondary_spell_level = max_spell_level - 4
-			ADD_CRE_ITEM ~ZGTRWS%secondary_spell_level%~ #1 #0 #0 ~NONE~ ~QITEM INV~
+			ADD_CRE_ITEM ~ZGTRWS%secondary_spell_level%~ #1 #0 #0 ~NONE~ ~INV QITEM~
 		END
 		SET max_spell_level = 0
 		BUT_ONLY
@@ -142,7 +142,7 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
 			END
 		END
 		PATCH_IF (max_spell_level > 0) BEGIN
-			ADD_CRE_ITEM ~ZGTRWS%max_spell_level%M~ #1 #0 #0 ~NONE~ ~QITEM INV~
+			ADD_CRE_ITEM ~ZGTRWS%max_spell_level%M~ #1 #0 #0 ~NONE~ ~INV QITEM~
 		END
 		SET max_spell_level = 0
 		BUT_ONLY
@@ -174,7 +174,7 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
 		END
 		PATCH_IF (max_spell_level > 4) BEGIN
 			SET secondary_spell_level = max_spell_level - 4
-			ADD_CRE_ITEM ~ZGTRWS%secondary_spell_level%M~ #1 #0 #0 ~NONE~ ~QITEM INV~
+			ADD_CRE_ITEM ~ZGTRWS%secondary_spell_level%M~ #1 #0 #0 ~NONE~ ~INV QITEM~
 		END
 		SET max_spell_level = 0
 		BUT_ONLY
@@ -206,7 +206,7 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
 			END
 		END
 		PATCH_IF (max_spell_level > 0) BEGIN
-			ADD_CRE_ITEM ~ZGTRWS%max_spell_level%~ #1 #0 #0 ~NONE~ ~QITEM INV~
+			ADD_CRE_ITEM ~ZGTRWS%max_spell_level%~ #1 #0 #0 ~NONE~ ~INV QITEM~
 		END
 		SET max_spell_level = 0
 		BUT_ONLY
@@ -238,7 +238,7 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
 		END
 		PATCH_IF (max_spell_level > 4) BEGIN
 			SET secondary_spell_level = max_spell_level - 4
-			ADD_CRE_ITEM ~ZGTRWS%secondary_spell_level%~ #1 #0 #0 ~NONE~ ~QITEM INV~
+			ADD_CRE_ITEM ~ZGTRWS%secondary_spell_level%~ #1 #0 #0 ~NONE~ ~INV QITEM~
 		END
 		SET max_spell_level = 0
 		BUT_ONLY
@@ -269,7 +269,7 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
 			END
 		END
 		PATCH_IF (max_spell_level > 0) BEGIN
-			ADD_CRE_ITEM ~ZGTRWS%max_spell_level%M~ #1 #0 #0 ~NONE~ ~QITEM INV~
+			ADD_CRE_ITEM ~ZGTRWS%max_spell_level%M~ #1 #0 #0 ~NONE~ ~INV QITEM~
 		END
 		SET max_spell_level = 0
 		BUT_ONLY
@@ -301,7 +301,7 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
 		END
 		PATCH_IF (max_spell_level > 4) BEGIN
 			SET secondary_spell_level = max_spell_level - 4
-			ADD_CRE_ITEM ~ZGTRWS%secondary_spell_level%M~ #1 #0 #0 ~NONE~ ~QITEM INV~
+			ADD_CRE_ITEM ~ZGTRWS%secondary_spell_level%M~ #1 #0 #0 ~NONE~ ~INV QITEM~
 		END
 		SET max_spell_level = 0
 		BUT_ONLY
