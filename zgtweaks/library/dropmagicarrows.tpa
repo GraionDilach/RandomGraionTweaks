@@ -1,16 +1,16 @@
 ACTION_DEFINE_ASSOCIATIVE_ARRAY magic_arrow_filenames_to_change BEGIN
-    ANGAROW => AROW08
+	ANGAROW => AROW08
 	AROW12 => AROW05
 	AROW16 => AROW09
-    AROW1A => AROW11
-    AROWKC => AROW08
-    ARROPHE2 => AROW08
-    CUTAROW1 => AROW09
-    DW#ANGAR => AROW08
-    DW#DIARM => AROW12
-    XAROW11 => AROW11
-    XBOLT06 => BOLT06
-    XBULL03 => BULL03
+	AROW1A => AROW11
+	AROWKC => AROW08
+	ARROPHE2 => AROW08
+	CUTAROW1 => AROW09
+	DW#ANGAR => AROW08
+	DW#DIARM => AROW12
+	XAROW11 => AROW11
+	XBOLT06 => BOLT06
+	XBULL03 => BULL03
 END
 
 COPY_EXISTING_REGEXP GLOB ~.*\.cre~ ~override~
@@ -23,9 +23,9 @@ COPY_EXISTING_REGEXP GLOB ~.*\.cre~ ~override~
 	  	TO_UPPER currentitem_name
 	  	PATCH_IF (VARIABLE_IS_SET $magic_arrow_filenames_to_change(~%currentitem_name%~)) BEGIN
 			WRITE_ASCIIE currentitem $magic_arrow_filenames_to_change(~%currentitem_name%~) (8)
-            READ_SHORT (currentitem + 10) currentitem_count
-            currentitem_count = currentitem_count * magic_arrow_stack_modifier / 100
-            WRITE_SHORT (currentitem + 10) currentitem_count
+			READ_SHORT (currentitem + 10) currentitem_count
+			currentitem_count = currentitem_count * magic_arrow_stack_modifier / 100
+			WRITE_SHORT (currentitem + 10) currentitem_count
 	  	END
 	  END
 	END
