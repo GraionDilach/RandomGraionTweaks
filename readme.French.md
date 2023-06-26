@@ -6,7 +6,11 @@ Ce mod propose diverses modifications de Graion Dilach pour les jeux Infinity En
 
 ## Composants 10 à 23 : Plus de parchemins de sorts aléatoires ( pour Enhanced Editions uniquement).
 
-Inspiré par le composant "Plus vaste selection de parchemins aleatoires" de SCS, RandomGraionTweaks ajoute des parchemins de sorts aléatoires en possession des lanceurs de sorts profanes / divins. Les parchemins ajoutés par des mods sont inclus uniquement s'ils suivent la procédure standard de spell.ids (les parchemins de sorts ajoutés par OlvynChuru ClassSpellTool ne sont pas pris en compte). Les parchemins de sorts en double sont filtrés et retirés.
+Inspiré par le composant "Plus vaste selection de parchemins aleatoires" de SCS, RandomGraionTweaks ajoute des parchemins de sorts aléatoires en possession des lanceurs de sorts profanes / divins.   
+
+Les parchemins ajoutés par des mods sont inclus uniquement qu'ils suivent la procédure standard de spell.ids où s'ils sont ajoutés grâce à l'outil d'OlvynChuru, **ClassSpellTool library**, version égale où supérieur à celle de 2023-02-08.  
+   
+Les parchemins de sorts en double sont filtrés et retirés.   
 
 Les associations suivantes sont disponibles (chacune peut être choisie individuellement) :
 * **10** : un parchemin de sort profane de même niveau que votre plus haut niveau de sort mémorisé.
@@ -24,6 +28,18 @@ Les associations suivantes sont disponibles (chacune peut être choisie individu
 Cela signifie qu'un Clerc / Mage de haut niveau peut obtenir jusqu'à 8 parchemins supplémentaires si tous les composants sont installés.
 
 **COMPATIBILITÉ** : Ces composants doivent être installés après tous les mods qui pourraient améliorer l'IA des lanceurs de sorts (SCS). Ces composants on une fonction similaire à "Plus vaste sélection de parchemins aléatoires" de SCS, mais ils peuvent être installés ensemble. Ces composants **doivent** absolument être installés après le mod [Abel's Nonrandom Treasures](https://forums.beamdog.com/discussion/83483/mod-nonrandom-treasures) pour IWDEE.
+
+## Components 3X Remplacer les flèches magiques clonées et marquées non-récupérables par des flèches similaires mais récupérables.
+
+En fonction du sous-composant sélectionné, la quantité de flèches présentes sera revue à la baisse.
+- __31:__ Conserver 100% des flèches concernées (Même quantité que les flèches non-récupérables présente sur la créature)
+- __32:__ Conserver 75 % des flèches concernées
+- __33:__ Conserver 66 % des flèches concernées
+- __34:__ Conserver 50 % des flèches concernées
+- __35:__ Conserver 33 % des flèches concernées
+- __36:__ Conserver 25 % des flèches concernées
+
+__COMPATIBILITY:__ Ce composant n'a pas été testé avec Item Revisions et ne prend pas en compte les changements apportés par ce mod. Ces composants ne modifieront pas les quantités de flèches individuelles et non-récupérables des créatures.  
 
 ## Composant 100 Table mixte PnP-BG de sorts supplémentaires basés sur la sagesse.
 
