@@ -1,12 +1,20 @@
 @0 = ~Un parchemin de sort profane de meme niveau que votre plus haut niveau de sort memorise.~
 @1 = ~Un parchemin de sort profane de 4 niveaux de moins que le plus haut niveau de sort profane memorise.~
-@2 = ~Un parchemin de sort profane pouvant etre de meme niveau ou inferieur a votre plus haut niveau de sort memorise~
+@2 = ~Un parchemin de sort profane pouvant etre de meme niveau ou inferieur a votre plus haut niveau de sort memorise.~
 @3 = ~Un parchemin de sort profane egale ou inferieur a 4 niveaux de moins que le plus haut niveau de sort profane memorise.~
 
 @4 = ~Un parchemin de sort divin de meme niveau que votre plus haut niveau de sort memorise.~
 @5 = ~Un parchemin de sort divin de 4 niveaux de moins que le plus haut niveau de sort profane memorise.~
-@6 = ~Un parchemin de sort divin pouvant etre de meme niveau ou inferieur a votre plus haut niveau de sort memorise~
+@6 = ~Un parchemin de sort divin pouvant etre de meme niveau ou inferieur a votre plus haut niveau de sort memorise.~
 @7 = ~Un parchemin de sort divin egale ou inferieur a 4 niveaux de moins que le plus haut niveau de sort profane memorise.~
+
+@30 = ~Remplacer les fleches magiques clonees et marquees non-recuperables par des fleches similaires mais recuperables.~
+@31 = ~Ne pas modifier la quantite de fleches concernees.~
+@32 = ~Reduire la quantite de fleches de 75 %~
+@33 = ~Reduire la quantite de fleches de 66 %~
+@34 = ~Reduire la quantite de fleches de 50 %~
+@35 = ~Reduire la quantite de fleches de 33 %~
+@36 = ~Reduire la quantite de fleches de 25 %~
 
 @100 = ~Table mixte PnP-BG de sorts supplementaires bases sur la sagesse~
 @101 = ~Accorder les emplacements de sorts du Rodeur aux multiclasses Clerc / Rodeur.~
@@ -14,8 +22,8 @@
 @1000 = ~Ce composant ne peut etre installe que sur les version Enhanced Edition des jeux.~
 @1001 = ~Ce composant ne peut etre installe que sur les version Enhanced Edition des jeux et Baldur's Gate II original.~
 
-@1010 = ~Modifier les Worgs afin qu'ils utilisent les animations de IWD2~
-@1011 = ~Modifier les Planetaires afin qu'ils utilisent les animations prevu pour SoD~
+@1010 = ~Modifier les Worgs afin qu'ils utilisent les animations de IWD2.~
+@1011 = ~Modifier les Planetaires afin qu'ils utilisent les animations prevu pour SoD.~
 
 @9999 = ~Equiper les objets presents dans l'inventaire des creatures si des emplacements sont disponibles.~
 
