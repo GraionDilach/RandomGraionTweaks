@@ -425,6 +425,33 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet~) @1000
 		END
 		BUT_ONLY IF_EXISTS
 
+BEGIN @1012
+LABEL ZG-MIH-DRACOLISKS-2-NWN-BASIS
+DESIGNATED 1002
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME  ~mh#draco.cre~) @1013
+
+	INCLUDE ~zgtweaks/library/animations.tpa~
+	
+	ACTION_IF (IDS_OF_SYMBOL (~animate~ ~BASILISK_NWN~) < 0) BEGIN
+		LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0x7d00 slotMax = 0x7dff RET slot END
+		ACTION_IF (slot <= 0) BEGIN
+		  FAIL @1014
+		END
+	
+		LAF TO_HEX_NUMBER INT_VAR value = slot minDigits = 4 RET hexNumber END
+		APPEND ~animate.ids~ ~0x%hexNumber% BASILISK_NWN~ UNLESS ~BASILISK_NWN~
+		CLEAR_IDS_MAP
+	
+		COPY ~%MOD_FOLDER%/library/basilisk_nwn.ini~ ~override/%hexNumber%.ini~
+		
+		COPY ~%MOD_FOLDER%/copy/nwnbas~ ~override~
+	END
+
+	COPY_EXISTING ~mh#draco.cre~ ~override~
+		WRITE_LONG 0x28 (IDS_OF_SYMBOL (~animate~ ~BASILISK_NWN~))
+		LPF DELETE_CRE_EFFECT INT_VAR opcode_to_delete = 52 END
+	BUT_ONLY
+
 BEGIN @9999
 LABEL ZG-EQUIP-WHAT-I-CAN
 DESIGNATED 9999

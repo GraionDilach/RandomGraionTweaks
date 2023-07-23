@@ -76,6 +76,12 @@ SoD included Planetar animations derived from the Solar animations, but these an
 
 __COMPATIBILITY:__ This component uses static monster lists, so please report if a planetar was missed. This component can be combined with the animation components of P&P Celestials and Spell Revisions, if you install those first (it will not touch the devas).
 
+## Component 1002 Use NWN Basilisk artwork from Infinity Animations for Made in Heaven Dracolisk
+
+The Made in Heaven Dracolisk uses a Basilisk recolor by default. This component changes it to be an NWN Basillisk, making it visually different.
+
+__COMPATIBILITY:__ This component requires a Made in Heaven component which installed the Dracolisk.
+
 ## Component 9999 Equip items from inventory to fill empty slots
 
 This component goes through creature inventories and attempt to equip all the items which the creature has a spare inventory slot for. Already-equipped items are not changed or touched.

@@ -24,6 +24,9 @@
 
 @1010 = ~Change Worgs to use IWD2 artwork~
 @1011 = ~Change Planetars to use their SoD solar-based artwork~
+@1012 = ~Use NWN Basilisk artwork from Infinity Animations for Made in Heaven Dracolisk~
+@1013 = ~The Dracolisk is missing.~
+@1014 = ~No free creature animation slot found.~
 
 @9999 = ~Equip items from inventory to fill empty slots~
 
