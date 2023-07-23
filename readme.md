@@ -34,6 +34,20 @@ Depending on the subcomponent chosen, the quantity of the arrows in the stack wi
 
 __COMPATIBILITY:__ This component wasn't tested against Item Revisions and doesn't consider changes from that mod. These components won't change individual arrow stacks which are marked as non-droppable on creatures.
 
+## Components 4X Change the amount of gold carried by monsters
+
+These components change the amount of gold carried by the monsters.
+ - __41__ Increase to 200%
+ - __42__ Increase to 150%
+ - __43__ Decrease to 83%
+ - __44__ Decrease to 75%
+ - __45__ Decrease to 66%
+ - __46__ Decrease to 50%
+ - __47__ Decrease to 33%
+ - __48__ Decrease to 25%
+
+__COMPATIBILITY:__ These components are similar to a group of components in Aurora's Shoes and Boots except that this one doesn't use an internal list and will affect all creatures, regardless of source of origin.
+
 ## Component 100 Mixed PnP-BG wisdom-based bonus spells table
 
 As discussed during the development of the EE Fixpack, Bioware made an error when they implemented a feature with the way the bonus spells are set up (which was only fixed in PST), resulting with more bonus mid-level spells and less low-level bonus spells than intended. This component tries to blend both options so that players will end up having the bonuses of both tables consistently excluding one caveat: both PnP and BG provides the first level 4 bonus spells on Wisdom 18 which breaks a pattern and is thereby delayed.

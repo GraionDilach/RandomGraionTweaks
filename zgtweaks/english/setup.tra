@@ -16,6 +16,16 @@
 @35 = ~Decrease affected arrow stacks to 33%~
 @36 = ~Decrease affected arrow stacks to 25%~
 
+@40 = ~Change the amount of gold carried by creatures~
+@41 = ~Increase to 200%~
+@42 = ~Increase to 150%~
+@43 = ~Decrease to 83%~
+@44 = ~Decrease to 75%~
+@45 = ~Decrease to 66%~
+@46 = ~Decrease to 50%~
+@47 = ~Decrease to 33%~
+@48 = ~Decrease to 25%~
+
 @100 = ~Mixed PnP-BG wisdom-based bonus spells table~
 @101 = ~Grant Ranger spell slots to Cleric-Ranger multiclasses~
 
