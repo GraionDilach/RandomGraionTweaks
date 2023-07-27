@@ -26,6 +26,37 @@
 @47 = ~Decrease to 33%~
 @48 = ~Decrease to 25%~
 
+@50 = ~Change the value of standard jewellery (does not affect amulets/rings with magical effects/abilities)~
+@51 = ~Increase to 200%~
+@52 = ~Increase to 150%~
+@53 = ~Decrease to 83%~
+@54 = ~Decrease to 75%~
+@55 = ~Decrease to 66%~
+@56 = ~Decrease to 50%~
+@57 = ~Decrease to 33%~
+@58 = ~Decrease to 25%~
+
+@60 = ~Change the percentage of the money merchants demand for an item~
+@61 = ~Decrease to 50%~
+@62 = ~Increase to 125%~
+@63 = ~Increase to 133%~
+@64 = ~Increase to 150%~
+@65 = ~Increase to 175%~
+@66 = ~Increase to 200%~
+@67 = ~Increase to 300%~
+@68 = ~Increase to 400%~
+@69 = ~Increase to 500%~
+
+@70 = ~Change the percentage of the money merchants pay for an item~
+@51 = ~Increase to 200%~
+@52 = ~Increase to 150%~
+@53 = ~Decrease to 83%~
+@54 = ~Decrease to 75%~
+@55 = ~Decrease to 66%~
+@56 = ~Decrease to 50%~
+@57 = ~Decrease to 33%~
+@58 = ~Decrease to 25%~
+
 @100 = ~Mixed PnP-BG wisdom-based bonus spells table~
 @101 = ~Grant Ranger spell slots to Cleric-Ranger multiclasses~
 

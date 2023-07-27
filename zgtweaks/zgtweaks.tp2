@@ -434,6 +434,386 @@ COPY_EXISTING_REGEXP GLOB ~.*\.cre~ ~override~
 	WRITE_LONG 0x1C gold
 	BUT_ONLY
 
+BEGIN @51 SUBCOMPONENT @50
+DESIGNATED 51
+LABEL ZG-GRAION-GEMS-200
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~
+	READ_SHORT 0x1C type
+	PATCH_IF (type = 1 || type = 10 || type = 34) BEGIN
+		READ_SHORT 0x68 abils
+		READ_SHORT 0x70 effects
+		PATCH_IF (abils == 0 && effects == 0) BEGIN
+			READ_LONG 0x34 price
+			price = price * 2
+			WRITE_LONG 0x34 price
+		END
+	END
+	BUT_ONLY
+
+BEGIN @52 SUBCOMPONENT @50
+DESIGNATED 52
+LABEL ZG-GRAION-GEMS-150
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~
+	READ_SHORT 0x1C type
+	PATCH_IF (type = 1 || type = 10 || type = 34) BEGIN
+		READ_SHORT 0x68 abils
+		READ_SHORT 0x70 effects
+		PATCH_IF (abils == 0 && effects == 0) BEGIN
+			READ_LONG 0x34 price
+			price = price * 3 / 2
+			WRITE_LONG 0x34 price
+		END
+	END
+	BUT_ONLY
+
+BEGIN @53 SUBCOMPONENT @50
+DESIGNATED 53
+LABEL ZG-GRAION-GEMS-83
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~
+	READ_SHORT 0x1C type
+	PATCH_IF (type = 1 || type = 10 || type = 34) BEGIN
+		READ_SHORT 0x68 abils
+		READ_SHORT 0x70 effects
+		PATCH_IF (abils == 0 && effects == 0) BEGIN
+			READ_LONG 0x34 price
+			price = price * 5 / 6
+			WRITE_LONG 0x34 price
+		END
+	END
+	BUT_ONLY
+
+BEGIN @54 SUBCOMPONENT @50
+DESIGNATED 54
+LABEL ZG-GRAION-GEMS-75
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~
+	READ_SHORT 0x1C type
+	PATCH_IF (type = 1 || type = 10 || type = 34) BEGIN
+		READ_SHORT 0x68 abils
+		READ_SHORT 0x70 effects
+		PATCH_IF (abils == 0 && effects == 0) BEGIN
+			READ_LONG 0x34 price
+			price = price * 3 / 4
+			WRITE_LONG 0x34 price
+		END
+	END
+	BUT_ONLY
+
+BEGIN @55 SUBCOMPONENT @50
+DESIGNATED 55
+LABEL ZG-GRAION-GEMS-66
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~
+	READ_SHORT 0x1C type
+	PATCH_IF (type = 1 || type = 10 || type = 34) BEGIN
+		READ_SHORT 0x68 abils
+		READ_SHORT 0x70 effects
+		PATCH_IF (abils == 0 && effects == 0) BEGIN
+			READ_LONG 0x34 price
+			price = price * 2 / 3
+			WRITE_LONG 0x34 price
+		END
+	END
+	BUT_ONLY
+
+BEGIN @56 SUBCOMPONENT @50
+DESIGNATED 56
+LABEL ZG-GRAION-GEMS-50
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~
+	READ_SHORT 0x1C type
+	PATCH_IF (type = 1 || type = 10 || type = 34) BEGIN
+		READ_SHORT 0x68 abils
+		READ_SHORT 0x70 effects
+		PATCH_IF (abils == 0 && effects == 0) BEGIN
+			READ_LONG 0x34 price
+			price = price / 2
+			WRITE_LONG 0x34 price
+		END
+	END
+	BUT_ONLY
+
+BEGIN @57 SUBCOMPONENT @50
+DESIGNATED 57
+LABEL ZG-GRAION-GEMS-33
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~
+	READ_SHORT 0x1C type
+	PATCH_IF (type = 1 || type = 10 || type = 34) BEGIN
+		READ_SHORT 0x68 abils
+		READ_SHORT 0x70 effects
+		PATCH_IF (abils == 0 && effects == 0) BEGIN
+			READ_LONG 0x34 price
+			price = price / 3
+			WRITE_LONG 0x34 price
+		END
+	END
+	BUT_ONLY
+
+BEGIN @58 SUBCOMPONENT @50
+DESIGNATED 58
+LABEL ZG-GRAION-GEMS-25
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~
+	READ_SHORT 0x1C type
+	PATCH_IF (type = 1 || type = 10 || type = 34) BEGIN
+		READ_SHORT 0x68 abils
+		READ_SHORT 0x70 effects
+		PATCH_IF (abils == 0 && effects == 0) BEGIN
+			READ_LONG 0x34 price
+			price = price / 4
+			WRITE_LONG 0x34 price
+		END
+	END
+	BUT_ONLY
+
+// percentage of base price store charges for items
+
+BEGIN @61 SUBCOMPONENT @60
+DESIGNATED 61
+LABEL ZG-GRAION-STORES-TOPLAYERS-50
+
+COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~
+	READ_LONG 0x14 sellprice
+	sellprice = sellprice / 2
+	WRITE_LONG 0x14 sellprice
+	BUT_ONLY
+
+BEGIN @62 SUBCOMPONENT @60
+DESIGNATED 62
+LABEL ZG-GRAION-STORES-TOPLAYERS-125
+
+COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~
+	READ_LONG 0x14 sellprice
+	sellprice = sellprice * 5 / 4
+	WRITE_LONG 0x14 sellprice
+	BUT_ONLY
+
+BEGIN @63 SUBCOMPONENT @60
+DESIGNATED 63
+LABEL ZG-GRAION-STORES-TOPLAYERS-133
+
+COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~
+	READ_LONG 0x14 sellprice
+	sellprice = sellprice * 4 / 3
+	WRITE_LONG 0x14 sellprice
+	BUT_ONLY
+
+BEGIN @64 SUBCOMPONENT @60
+DESIGNATED 64
+LABEL ZG-GRAION-STORES-TOPLAYERS-150
+
+COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~
+	READ_LONG 0x14 sellprice
+	sellprice = sellprice * 3 / 2
+	WRITE_LONG 0x14 sellprice
+	BUT_ONLY
+
+BEGIN @65 SUBCOMPONENT @60
+DESIGNATED 65
+LABEL ZG-GRAION-STORES-TOPLAYERS-175
+
+COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~
+	READ_LONG 0x14 sellprice
+	sellprice = sellprice * 7 / 8
+	WRITE_LONG 0x14 sellprice
+	BUT_ONLY
+
+BEGIN @66 SUBCOMPONENT @60
+DESIGNATED 66
+LABEL ZG-GRAION-STORES-TOPLAYERS-200
+
+COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~
+	READ_LONG 0x14 sellprice
+	sellprice = sellprice * 2
+	WRITE_LONG 0x14 sellprice
+	BUT_ONLY
+
+BEGIN @67 SUBCOMPONENT @60
+DESIGNATED 67
+LABEL ZG-GRAION-STORES-TOPLAYERS-300
+
+COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~
+	READ_LONG 0x14 sellprice
+	sellprice = sellprice * 3
+	WRITE_LONG 0x14 sellprice
+	BUT_ONLY
+
+BEGIN @68 SUBCOMPONENT @60
+DESIGNATED 68
+LABEL ZG-GRAION-STORES-TOPLAYERS-400
+
+COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~
+	READ_LONG 0x14 sellprice
+	sellprice = sellprice * 4
+	WRITE_LONG 0x14 sellprice
+	BUT_ONLY
+
+BEGIN @69 SUBCOMPONENT @60
+DESIGNATED 69
+LABEL ZG-GRAION-STORES-TOPLAYERS-500
+
+COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~
+	READ_LONG 0x14 sellprice
+	sellprice = sellprice * 5
+	WRITE_LONG 0x14 sellprice
+	BUT_ONLY
+
+// percentage of base price store charges for items 
+
+BEGIN @71 SUBCOMPONENT @70
+DESIGNATED 71
+LABEL ZG-GRAION-STORES-FROMPLAYERS-200
+
+COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~
+	READ_LONG 0x18 buyprice
+	buyprice_orig = buyprice
+	buyprice = buyprice * 2
+	PATCH_IF (buyprice == 0 && buyprice_orig > 0) BEGIN
+		WRITE_LONG 0x18 1
+	END ELSE BEGIN
+		WRITE_LONG 0x18 buyprice
+	END
+	BUT_ONLY
+
+BEGIN @72 SUBCOMPONENT @70
+DESIGNATED 72
+LABEL ZG-GRAION-STORES-FROMPLAYERS-150
+
+COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~
+	READ_LONG 0x18 buyprice
+	buyprice_orig = buyprice
+	buyprice = buyprice * 3 / 2
+	PATCH_IF (buyprice == 0 && buyprice_orig > 0) BEGIN
+		WRITE_LONG 0x18 1
+	END ELSE BEGIN
+		WRITE_LONG 0x18 buyprice
+	END
+	BUT_ONLY
+
+BEGIN @73 SUBCOMPONENT @70
+DESIGNATED 73
+LABEL ZG-GRAION-STORES-FROMPLAYERS-83
+
+COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~
+	READ_LONG 0x18 buyprice
+	buyprice_orig = buyprice
+	buyprice = buyprice * 5 / 6
+	PATCH_IF (buyprice == 0 && buyprice_orig > 0) BEGIN
+		WRITE_LONG 0x18 1
+	END ELSE BEGIN
+		WRITE_LONG 0x18 buyprice
+	END
+	BUT_ONLY
+
+BEGIN @74 SUBCOMPONENT @70
+DESIGNATED 74
+LABEL ZG-GRAION-STORES-FROMPLAYERS-75
+
+COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~
+	READ_LONG 0x18 buyprice
+	buyprice_orig = buyprice
+	buyprice = buyprice * 3 / 4
+	PATCH_IF (buyprice == 0 && buyprice_orig > 0) BEGIN
+		WRITE_LONG 0x18 1
+	END ELSE BEGIN
+		WRITE_LONG 0x18 buyprice
+	END
+	BUT_ONLY
+
+BEGIN @75 SUBCOMPONENT @70
+DESIGNATED 75
+LABEL ZG-GRAION-STORES-FROMPLAYERS-66
+
+COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~
+	READ_LONG 0x18 buyprice
+	buyprice_orig = buyprice
+	buyprice = buyprice * 2 / 3
+	PATCH_IF (buyprice == 0 && buyprice_orig > 0) BEGIN
+		WRITE_LONG 0x18 1
+	END ELSE BEGIN
+		WRITE_LONG 0x18 buyprice
+	END
+	BUT_ONLY
+
+BEGIN @76 SUBCOMPONENT @70
+DESIGNATED 76
+LABEL ZG-GRAION-STORES-FROMPLAYERS-50
+
+COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~
+	READ_LONG 0x18 buyprice
+	buyprice_orig = buyprice
+	buyprice = buyprice / 2
+	PATCH_IF (buyprice == 0 && buyprice_orig > 0) BEGIN
+		WRITE_LONG 0x18 1
+	END ELSE BEGIN
+		WRITE_LONG 0x18 buyprice
+	END
+	BUT_ONLY
+
+BEGIN @77 SUBCOMPONENT @70
+DESIGNATED 77
+LABEL ZG-GRAION-STORES-FROMPLAYERS-33
+
+COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~
+	READ_LONG 0x18 buyprice
+	buyprice_orig = buyprice
+	buyprice = buyprice / 3
+	PATCH_IF (buyprice == 0 && buyprice_orig > 0) BEGIN
+		WRITE_LONG 0x18 1
+	END ELSE BEGIN
+		WRITE_LONG 0x18 buyprice
+	END
+	BUT_ONLY
+
+BEGIN @78 SUBCOMPONENT @70
+DESIGNATED 78
+LABEL ZG-GRAION-STORES-FROMPLAYERS
+
+COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~
+	READ_LONG 0x18 buyprice
+	buyprice_orig = buyprice
+	buyprice = buyprice / 4
+	PATCH_IF (buyprice == 0 && buyprice_orig > 0) BEGIN
+		WRITE_LONG 0x18 1
+	END ELSE BEGIN
+		WRITE_LONG 0x18 buyprice
+	END
+	BUT_ONLY
+
+BEGIN @71 SUBCOMPONENT @70
+DESIGNATED 71
+LABEL ZG-GRAION-STORES-FROMPLAYERS
+
+COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~
+	READ_LONG 0x18 buyprice
+	buyprice_orig = buyprice
+	buyprice = buyprice / 5
+	PATCH_IF (buyprice == 0 && buyprice_orig > 0) BEGIN
+		WRITE_LONG 0x18 1
+	END ELSE BEGIN
+		WRITE_LONG 0x18 buyprice
+	END
+	BUT_ONLY
+
+BEGIN @71 SUBCOMPONENT @70
+DESIGNATED 71
+LABEL ZG-GRAION-STORES-FROMPLAYERS
+
+COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~
+	READ_LONG 0x18 buyprice
+	buyprice_orig = buyprice
+	buyprice = buyprice / 5
+	PATCH_IF (buyprice == 0 && buyprice_orig > 0) BEGIN
+		WRITE_LONG 0x18 1
+	END ELSE BEGIN
+		WRITE_LONG 0x18 buyprice
+	END
+	BUT_ONLY
+
 BEGIN @100
 LABEL ZG-BOBW-WISDOM-TABLE
 DESIGNATED 100
