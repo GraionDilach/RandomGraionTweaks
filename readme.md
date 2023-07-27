@@ -37,16 +37,58 @@ __COMPATIBILITY:__ This component wasn't tested against Item Revisions and doesn
 ## Components 4X Change the amount of gold carried by monsters
 
 These components change the amount of gold carried by the monsters.
- - __41__ Increase to 200%
- - __42__ Increase to 150%
- - __43__ Decrease to 83%
- - __44__ Decrease to 75%
- - __45__ Decrease to 66%
- - __46__ Decrease to 50%
- - __47__ Decrease to 33%
- - __48__ Decrease to 25%
+- __41__ Increase to 200%
+- __42__ Increase to 150%
+- __43__ Decrease to 83%
+- __44__ Decrease to 75%
+- __45__ Decrease to 66%
+- __46__ Decrease to 50%
+- __47__ Decrease to 33%
+- __48__ Decrease to 25%
 
 __COMPATIBILITY:__ These components are similar to a group of components in Aurora's Shoes and Boots except that this one doesn't use an internal list and will affect all creatures, regardless of source of origin.
+
+## Components 5X Change the value of standard jewellery (does not affect amulets/rings with magical effects/abilities)
+
+- __51__ = Increase to 200%
+- __52__ = Increase to 150%
+- __53__ = Decrease to 83%
+- __54__ = Decrease to 75%
+- __55__ = Decrease to 66%
+- __56__ = Decrease to 50%
+- __57__ = Decrease to 33%
+- __58__ = Decrease to 25%
+
+__COMPATIBILITY:__ These components are similar to a group of components in Aurora's Shoes and Boots except that this one doesn't use an internal list and will affect all jewellery/gems without magical abilities, regardless of source of origin.
+
+## Components 6X Change the percentage of the money merchants pay for an item
+
+These components change the selling value of items, basically.
+- __61__ = Decrease to 50%
+- __62__ = Increase to 125%
+- __63__ = Increase to 133%
+- __64__ = Increase to 150%
+- __65__ = Increase to 175%
+- __66__ = Increase to 200%
+- __67__ = Increase to 300%
+- __68__ = Increase to 400%
+- __69__ = Increase to 500%
+
+__COMPATIBILITY:__ These components are similar to a group of components in Aurora's Shoes and Boots except that this one doesn't use an internal list and will affect all stores, regardless of source of origin.
+
+## Components 7X Change the percentage of the money merchants pay for an item
+
+These components change the selling value of items, basically.
+- __71__ = Increase to 200%
+- __72__ = Increase to 150%
+- __73__ = Decrease to 83%
+- __74__ = Decrease to 75%
+- __75__ = Decrease to 66%
+- __76__ = Decrease to 50%
+- __77__ = Decrease to 33%
+- __78__ = Decrease to 25%
+
+__COMPATIBILITY:__ These components are similar to a group of components in Aurora's Shoes and Boots except that this one doesn't use an internal list and will affect all stores, regardless of source of origin.
 
 ## Component 100 Mixed PnP-BG wisdom-based bonus spells table
 
