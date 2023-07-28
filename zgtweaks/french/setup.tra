@@ -16,6 +16,47 @@
 @35 = ~Reduire la quantite de fleches de 33 %~
 @36 = ~Reduire la quantite de fleches de 25 %~
 
+@40 = ~Modifier la quantité d'or possédée par les créatures.~
+@41 = ~Augmenter de 200%~
+@42 = ~Augmenter de 150%~
+@43 = ~Diminuer de 83%~
+@44 = ~Diminuer de 75%~
+@45 = ~Diminuer de 66%~
+@46 = ~Diminuer de 50%~
+@47 = ~Diminuer de 33%~
+@48 = ~Diminuer de 25%~
+
+@50 = ~Modifier la valeur marchande des pièces de joaillerie et autres bijoux (n'affecte pas les amulettes / anneaux ayant des effets / capacités magiques).~
+@51 = ~Augmenter de 200%~
+@52 = ~Augmenter de 150%~
+@53 = ~Diminuer de 83%~
+@54 = ~Diminuer de 75%~
+@55 = ~Diminuer de 66%~
+@56 = ~Diminuer de 50%~
+@57 = ~Diminuer de 33%~
+@58 = ~Diminuer de 25%~
+
+@60 = ~Modifier le pourcentage de la somme demandée par les marchands pour ses articles.~
+@61 = ~Diminuer de 50%~
+@62 = ~Augmenter de 125%~
+@63 = ~Augmenter de 133%~
+@64 = ~Augmenter de 150%~
+@65 = ~Augmenter de 175%~
+@66 = ~Augmenter de 200%~
+@67 = ~Augmenter de 300%~
+@68 = ~Augmenter de 400%~
+@69 = ~Augmenter de 500%~
+
+@70 = ~Modifier le pourcentage de la somme payée par les marchands pour vos articles.~
+@71 = ~Augmenter de 200%~
+@72 = ~Augmenter de 150%~
+@73 = ~Diminuer de 83%~
+@74 = ~Diminuer de 75%~
+@75 = ~Diminuer de 66%~
+@76 = ~Diminuer de 50%~
+@77 = ~Diminuer de 33%~
+@78 = ~Diminuer de 25%~
+
 @100 = ~Table mixte PnP-BG de sorts supplementaires bases sur la sagesse~
 @101 = ~Accorder les emplacements de sorts du Rodeur aux multiclasses Clerc / Rodeur.~
 
@@ -24,6 +65,9 @@
 
 @1010 = ~Modifier les Worgs afin qu'ils utilisent les animations de IWD2.~
 @1011 = ~Modifier les Planetaires afin qu'ils utilisent les animations prevu pour SoD.~
+@1012 = ~Remplacer l'animation du Dracolisk ajouté par le mode Made In Heaven~
+@1013 = ~Le Dracolisk n'est pas présent dans votre jeu.~
+@1014 = ~Aucun emplacement d'animation de créature n'est disponible.~
 
 @9999 = ~Equiper les objets presents dans l'inventaire des creatures si des emplacements sont disponibles.~
 
