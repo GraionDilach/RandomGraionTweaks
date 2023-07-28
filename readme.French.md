@@ -41,6 +41,62 @@ En fonction du sous-composant sélectionné, la quantité de flèches présentes
 
 __COMPATIBILITY:__ Ce composant n'a pas été testé avec Item Revisions et ne prend pas en compte les changements apportés par ce mod. Ces composants ne modifieront pas les quantités de flèches individuelles et non-récupérables des créatures.  
 
+## Composant 4X Modifier la quantité d'or possédée par les créatures
+
+Ce composant modifie la quantité d'or possédée par les créatures
+- __41__ = Augmenter de 200%
+- __42__ = Augmenter de 150%
+- __43__ = Diminuer de 83%
+- __44__ = Diminuer de 75%
+- __45__ = Diminuer de 66%
+- __46__ = Diminuer de 50%
+- __47__ = Diminuer de 33%
+- __48__ = Diminuer de 25%
+
+**COMPATIBILITÉ** : Ces composants sont similaires à ceux disponible dans le mod Aurora's Shoes and Boots, à la différence que celui-ci n'utilise pas une liste de créatures spécifiques mais les affecte toutes, quelle que soit leur provenance.
+
+## Composant 5X Modifier la valeur marchande des pièces de joaillerie et autres bijoux (n'affecte pas les amulettes / anneaux ayant des effets / capacités magiques).
+
+- __51__ = Augmenter de 200%
+- __52__ = Augmenter de 150%
+- __53__ = Diminuer de 83%
+- __54__ = Diminuer de 75%
+- __55__ = Diminuer de 66%
+- __56__ = Diminuer de 50%
+- __57__ = Diminuer de 33%
+- __58__ = Diminuer de 25%
+
+**COMPATIBILITÉ** : Ces composants sont similaires à ceux disponible dans le mod Aurora's Shoes and Boots, à la différence que celui-ci n'utilise pas une liste d'Items spécifiques mais les affecte tous, quelle que soit leur provenance.
+
+## Composant 6X Modifier le pourcentage de la somme demandée par les marchands pour ses articles.
+
+Ce composant modifie le pourcentage de la somme demandée par les marchands pour ses articles.
+- __61__ = Diminuer de 50%
+- __62__ = Augmenter de 125%
+- __63__ = Augmenter de 133%
+- __64__ = Augmenter de 150%
+- __65__ = Augmenter de 175%
+- __66__ = Augmenter de 200%
+- __67__ = Augmenter de 300%
+- __68__ = Augmenter de 400%
+- __69__ = Augmenter de 500%
+
+**COMPATIBILITÉ** : Ces composants sont similaires à ceux disponible dans le mod Aurora's Shoes and Boots, à la différence que celui-ci n'utilise pas une liste de marchands spécifiques mais les affecte tous, quelle que soit leur provenance.
+
+## Composant 7X Modifier le pourcentage de la somme payée par les marchands pour vos articles.
+
+Ce composant modifie le pourcentage de la somme payée par les marchands pour vos articles.
+- __71__ = Augmenter de 200%
+- __72__ = Augmenter de 150%
+- __73__ = Diminuer de 83%
+- __74__ = Diminuer de 75%
+- __75__ = Diminuer de 66%
+- __76__ = Diminuer de 50%
+- __77__ = Diminuer de 33%
+- __78__ = Diminuer de 25%
+
+**COMPATIBILITÉ** : Ces composants sont similaires à ceux disponible dans le mod Aurora's Shoes and Boots, à la différence que celui-ci n'utilise pas une liste de marchands spécifiques mais les affecte tous, quelle que soit leur provenance.
+
 ## Composant 100 Table mixte PnP-BG de sorts supplémentaires basés sur la sagesse.
 
 Cela a été évoqué lors du développement du EE Fixpack, Bioware a fait une erreur en implémentant la façon dont les sorts supplémentaires sont configurés (ce qui n'a été corrigée que dans PST), en conséquence plus de sorts supplémentaires de niveau intermédiaire et moins de sorts supplémentaires de bas niveau. Ce composant tente de mélanger les deux options de sorte que les joueurs bénéficient des bonus pour les deux tables mais de manière cohérente, à l'exception d'une mise en garde : PnP et BG accordent le premier sort supplémentaire de niveau 4 pour une Sagesse de 18, ce qui rompt la logique, il est donc différé.
@@ -83,6 +139,12 @@ En lieu et place de l'animation du loup simplement recoloré.
 SoD inclut des animations pour les Planétaires inspirées des animations des Solaires, mais finalement ces animations sont restées inutilisées. Ce composant les associe donc aux planétaires.
 
 **COMPATIBILITÉ** : Ce composant utilise une listes prédéfinie de créatures, merci de nous signaler si un planétaire a été oublié. Ce composant peut être utilisé avec les composants d'animation de P&P Celestials et Spell Revisions, si vous les installez en premier (Les Devas ne sont pas modifiés).
+
+## Composant 1002 Remplacer l'animation du Dracolisk ajouté par le mode Made In Heaven par celle du Basilik de NWN Basilisk.
+
+Le Dracolisk du mod Made in Heaven utilise une simple recoloration du Basilisk original. Ce composant le remplace par l'animation de NWN, le rendant ainsi réellement différent.
+
+**COMPATIBILITÉ** :  Ce composant necessite un des composants inclus dans l'un des mods Made In Heaven et qui ajoute le Dracolisk.
 
 ## Composant 9999 Équiper les objets présents dans l'inventaire des créatures si des emplacements sont disponibles.
 
