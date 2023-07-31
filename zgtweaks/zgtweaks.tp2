@@ -1,6 +1,6 @@
 BACKUP ~weidu_external/zgtweaks/backup~ // location to store files for uninstall purposes
 AUTHOR ~Graion Dilach~
-VERSION ~1.11.1~
+VERSION ~1.11.2~
 
 ALWAYS
 // do not convert Setup.tra files, those should be UTF8 already
@@ -902,7 +902,7 @@ REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME  ~mh#draco.cre~) @1013
 		APPEND ~animate.ids~ ~0x%hexNumber% BASILISK_NWN~ UNLESS ~BASILISK_NWN~
 		CLEAR_IDS_MAP
 	
-		COPY ~%MOD_FOLDER%/library/basilisk_nwn.ini~ ~override/%hexNumber%.ini~
+		COPY ~%MOD_FOLDER%/copy/basilisk_nwn.ini~ ~override/%hexNumber%.ini~
 		
 		COPY ~%MOD_FOLDER%/copy/nwnbas~ ~override~
 	END
