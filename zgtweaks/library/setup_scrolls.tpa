@@ -49,7 +49,7 @@ DEFINE_ACTION_FUNCTION setup_random_scrolls BEGIN
 					// class-spell-tool
 					PATCH_IF handled = 0 BEGIN
 						INNER_ACTION BEGIN
-							ACTION_IF FILE_EXISTS_IN_GAME ~MEWI1.txt~ THEN BEGIN
+							ACTION_IF FILE_EXISTS_IN_GAME ~MEWI1.txt~ AND FILE_EXISTS_IN_GAME ~%splres%.spl~ THEN BEGIN
 								COPY_EXISTING ~%splres%.spl~ ~override~
 									READ_LONG 0x34 int_level
 								BUT_ONLY
