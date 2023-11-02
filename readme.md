@@ -61,9 +61,9 @@ __COMPATIBILITY:__ These components are similar to a group of components in Auro
 
 __COMPATIBILITY:__ These components are similar to a group of components in Aurora's Shoes and Boots except that this one doesn't use an internal list and will affect all jewellery/gems without magical abilities, regardless of source of origin.
 
-## Components 6X Change the percentage of the money merchants pay for an item
+## Components 6X Change the percentage of the money merchants demand for an item
 
-These components change the selling value of items, basically.
+These components change the value of items, basically.
 - __61__ = Decrease to 50%
 - __62__ = Increase to 125%
 - __63__ = Increase to 133%

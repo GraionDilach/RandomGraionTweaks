@@ -1,6 +1,6 @@
 BACKUP ~weidu_external/zgtweaks/backup~ // location to store files for uninstall purposes
 AUTHOR ~Graion Dilach~
-VERSION ~1.11.2~
+VERSION ~1.12~
 
 ALWAYS
 // do not convert Setup.tra files, those should be UTF8 already
