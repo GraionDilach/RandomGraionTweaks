@@ -1,16 +1,14 @@
 # Random Graion Tweaks
 
-### [Forum thread on G3](https://www.gibberlings3.net/forums/topic/34458-random-graion-tweaks/)
-
 Ce mod propose diverses modifications de Graion Dilach pour les jeux Infinity Engine.
 
 ## Composants 10 à 23 : Plus de parchemins de sorts aléatoires ( pour Enhanced Editions uniquement).
 
-Inspiré par le composant "Plus vaste selection de parchemins aleatoires" de SCS, RandomGraionTweaks ajoute des parchemins de sorts aléatoires en possession des lanceurs de sorts profanes / divins.   
+Inspiré par le composant "Plus vaste selection de parchemins aleatoires" de SCS, RandomGraionTweaks ajoute des parchemins de sorts aléatoires en possession des lanceurs de sorts profanes / divins.
 
-Les parchemins ajoutés par des mods sont inclus uniquement qu'ils suivent la procédure standard de spell.ids où s'ils sont ajoutés grâce à l'outil d'OlvynChuru, **ClassSpellTool library**, version égale où supérieur à celle de 2023-02-08.  
-   
-Les parchemins de sorts en double sont filtrés et retirés.   
+Les parchemins ajoutés par des mods sont inclus uniquement qu'ils suivent la procédure standard de spell.ids où s'ils sont ajoutés grâce à l'outil d'OlvynChuru, **ClassSpellTool library**, version égale où supérieur à celle de 2023-02-08.
+
+Les parchemins de sorts en double sont filtrés et retirés.
 
 Les associations suivantes sont disponibles (chacune peut être choisie individuellement) :
 * **10** : un parchemin de sort profane de même niveau que votre plus haut niveau de sort mémorisé.
@@ -39,7 +37,7 @@ En fonction du sous-composant sélectionné, la quantité de flèches présentes
 - __35:__ Conserver 33 % des flèches concernées
 - __36:__ Conserver 25 % des flèches concernées
 
-__COMPATIBILITY:__ Ce composant n'a pas été testé avec Item Revisions et ne prend pas en compte les changements apportés par ce mod. Ces composants ne modifieront pas les quantités de flèches individuelles et non-récupérables des créatures.  
+__COMPATIBILITY:__ Ce composant n'a pas été testé avec Item Revisions et ne prend pas en compte les changements apportés par ce mod. Ces composants ne modifieront pas les quantités de flèches individuelles et non-récupérables des créatures.
 
 ## Composant 4X Modifier la quantité d'or possédée par les créatures
 

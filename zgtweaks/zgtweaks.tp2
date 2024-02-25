@@ -1,15 +1,15 @@
 BACKUP ~weidu_external/zgtweaks/backup~ // location to store files for uninstall purposes
 AUTHOR ~Graion Dilach~
-VERSION ~1.12~
+VERSION ~1.12.1~
 
 ALWAYS
 // do not convert Setup.tra files, those should be UTF8 already
-	ACTION_DEFINE_ARRAY arrayNoConvert BEGIN setup END 
+	ACTION_DEFINE_ARRAY arrayNoConvert BEGIN setup END
 	ACTION_DEFINE_ARRAY arrayReload BEGIN mod END
-	
+
 	// define variable for HANDLE_CHARSETS out_path so it can be reused later
 	OUTER_TEXT_SPRINT "HANDLE_CHARSETS_OUT_PATH" EVAL "weidu_external\zgtweaks\lang"
-	
+
 	LAF HANDLE_CHARSETS
 		INT_VAR
 			from_utf8 = 1
@@ -22,7 +22,7 @@ ALWAYS
 			noconvert_array = arrayNoConvert
 			reload_array = arrayReload
 	END
-	
+
 	// for AUTO_TRA: if the game is the enhanced edition, the conversion will not happen so all .tra files should be loaded from "%MOD_FOLDER%\Lang"
 	ACTION_IF (GAME_IS "bgee bg2ee eet iwdee pstee") THEN BEGIN
 		OUTER_TEXT_SPRINT "TRA_LOCATION" EVAL "%MOD_FOLDER%"
@@ -46,7 +46,7 @@ LANGUAGE ~Russian (by yota13)~ ~russian~
 	~zgtweaks/english/mod.tra~
 	~zgtweaks/russian/setup.tra~
 	~zgtweaks/russian/mod.tra~
-	
+
 LANGUAGE ~French~ ~french~
 	~zgtweaks/english/setup.tra~
 	~zgtweaks/english/mod.tra~
@@ -73,7 +73,7 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
 			READ_SHORT (spell_mem_offset + 0x0000) spell_level
 			READ_SHORT (spell_mem_offset + 0x0006) spell_type
 			READ_LONG (spell_mem_offset + 0x000c) spell_count
-	
+
 			PATCH_IF (spell_type == 1 AND spell_count > 0 AND max_spell_level < spell_level + 1) BEGIN
 				max_spell_level = spell_level + 1
 			END
@@ -104,7 +104,7 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
 			READ_SHORT (spell_mem_offset + 0x0000) spell_level
 			READ_SHORT (spell_mem_offset + 0x0006) spell_type
 			READ_LONG (spell_mem_offset + 0x000c) spell_count
-	
+
 			PATCH_IF (spell_type == 1 AND spell_count > 0 AND max_spell_level < spell_level + 1) BEGIN
 				max_spell_level = spell_level + 1
 			END
@@ -115,7 +115,7 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
 		END
 		SET max_spell_level = 0
 		BUT_ONLY
-		
+
 BEGIN @2
 LABEL ZG-RANDOM-SCROLLS-FOR-MAGES
 DESIGNATED 12
@@ -136,7 +136,7 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
 			READ_SHORT (spell_mem_offset + 0x0000) spell_level
 			READ_SHORT (spell_mem_offset + 0x0006) spell_type
 			READ_LONG (spell_mem_offset + 0x000c) spell_count
-	
+
 			PATCH_IF (spell_type == 1 AND spell_count > 0 AND max_spell_level < spell_level + 1) BEGIN
 				max_spell_level = spell_level + 1
 			END
@@ -167,7 +167,7 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
 			READ_SHORT (spell_mem_offset + 0x0000) spell_level
 			READ_SHORT (spell_mem_offset + 0x0006) spell_type
 			READ_LONG (spell_mem_offset + 0x000c) spell_count
-	
+
 			PATCH_IF (spell_type == 1 AND spell_count > 0 AND max_spell_level < spell_level + 1) BEGIN
 				max_spell_level = spell_level + 1
 			END
@@ -200,7 +200,7 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
 			READ_SHORT (spell_mem_offset + 0x0000) spell_level
 			READ_SHORT (spell_mem_offset + 0x0006) spell_type
 			READ_LONG (spell_mem_offset + 0x000c) spell_count
-	
+
 			PATCH_IF (spell_type == 0 AND spell_count > 0 AND max_spell_level < spell_level + 1) BEGIN
 				max_spell_level = spell_level + 1
 			END
@@ -231,7 +231,7 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
 			READ_SHORT (spell_mem_offset + 0x0000) spell_level
 			READ_SHORT (spell_mem_offset + 0x0006) spell_type
 			READ_LONG (spell_mem_offset + 0x000c) spell_count
-	
+
 			PATCH_IF (spell_type == 0 AND spell_count > 0 AND max_spell_level < spell_level + 1) BEGIN
 				max_spell_level = spell_level + 1
 			END
@@ -242,7 +242,7 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
 		END
 		SET max_spell_level = 0
 		BUT_ONLY
-		
+
 BEGIN @6
 LABEL ZG-RANDOM-SCROLLS-FOR-CLERICS
 DESIGNATED 22
@@ -263,7 +263,7 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
 			READ_SHORT (spell_mem_offset + 0x0000) spell_level
 			READ_SHORT (spell_mem_offset + 0x0006) spell_type
 			READ_LONG (spell_mem_offset + 0x000c) spell_count
-	
+
 			PATCH_IF (spell_type == 0 AND spell_count > 0 AND max_spell_level < spell_level + 1) BEGIN
 				max_spell_level = spell_level + 1
 			END
@@ -294,7 +294,7 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet~) @1000
 			READ_SHORT (spell_mem_offset + 0x0000) spell_level
 			READ_SHORT (spell_mem_offset + 0x0006) spell_type
 			READ_LONG (spell_mem_offset + 0x000c) spell_count
-	
+
 			PATCH_IF (spell_type == 0 AND spell_count > 0 AND max_spell_level < spell_level + 1) BEGIN
 				max_spell_level = spell_level + 1
 			END
@@ -662,7 +662,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~
 	WRITE_LONG 0x14 sellprice
 	BUT_ONLY
 
-// percentage of base price store charges for items 
+// percentage of base price store charges for items
 
 BEGIN @71 SUBCOMPONENT @70
 DESIGNATED 71
@@ -891,19 +891,19 @@ DESIGNATED 1002
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME  ~mh#draco.cre~) @1013
 
 	INCLUDE ~zgtweaks/library/animations.tpa~
-	
+
 	ACTION_IF (IDS_OF_SYMBOL (~animate~ ~BASILISK_NWN~) < 0) BEGIN
 		LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0x7d00 slotMax = 0x7dff RET slot END
 		ACTION_IF (slot <= 0) BEGIN
 		  FAIL @1014
 		END
-	
+
 		LAF TO_HEX_NUMBER INT_VAR value = slot minDigits = 4 RET hexNumber END
 		APPEND ~animate.ids~ ~0x%hexNumber% BASILISK_NWN~ UNLESS ~BASILISK_NWN~
 		CLEAR_IDS_MAP
-	
+
 		COPY ~%MOD_FOLDER%/copy/basilisk_nwn.ini~ ~override/%hexNumber%.ini~
-		
+
 		COPY ~%MOD_FOLDER%/copy/nwnbas~ ~override~
 	END
 
@@ -1002,7 +1002,7 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee iwdee eet soa tob tutu tutu_totsc bgt ca 
 
 	COPY_EXISTING ~RNDTRES.2DA~ ~override~
 		COUNT_2DA_COLS cols // amount of columns
-		READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+		READ_2DA_ENTRIES_NOW rows cols // read all file into memory
 		FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
 			READ_2DA_ENTRY_FORMER rows row 0 ~rndtreasure~ // read column value
 			PATCH_IF FILE_EXISTS_IN_GAME ~%rndtreasure%.itm~ BEGIN
