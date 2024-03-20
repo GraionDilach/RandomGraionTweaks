@@ -139,6 +139,12 @@ BEGIN
 				ACTION_IF FILE_EXISTS_IN_GAME ~%currentitem_name%.itm~ BEGIN
 					COPY_EXISTING ~%currentitem_name%.itm~ ~override~
 						READ_SHORT 0x1c category
+						// DO NOT EQUIP CURSED ITEMS
+						READ_LONG 0x18 flags ELSE 0
+						flags = flags BAND 16
+						PATCH_IF (flags > 0) BEGIN
+							SET category = (0 - 1)
+						END
 						// DO NOT EQUIP NONMAGIC JEWELLERY
 						PATCH_IF (category == 10 OR category == 1) BEGIN
 							READ_SHORT 0x68 abils
