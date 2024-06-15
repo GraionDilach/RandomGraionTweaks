@@ -9,7 +9,7 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY remap_itemcategories BEGIN
 	7  => 0		// Headgear (Helms, hats, and other head-wear)
 	9  => 18	// Potions
 	10 => 4		// Rings
-	11 => 18	// Scrolls
+	// 11 Scrolls, skipped
 	12 => 2		// Shields (not in IWD)
 	// 13 Food, skipped
 	14 => 13	// Bullets (for a sling)
@@ -75,11 +75,11 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY remap_itemcategories BEGIN
 END
 
 ACTION_DEFINE_ASSOCIATIVE_ARRAY remap_slotcount BEGIN
-	5  => 17 // quiver
+	5  => 16 // quiver
 	9  => 21 // quick item
 	10 => 6  // ring
 	11 => 21 // quick item
-	14 => 17 // quiver
+	14 => 16 // quiver
 	15 => 13 // weapon
 	16 => 13 // weapon
 	17 => 13 // weapon
@@ -103,15 +103,58 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY remap_slotcount BEGIN
 	69 => 13 // weapon
 END
 
+ACTION_DEFINE_ASSOCIATIVE_ARRAY itemslots BEGIN
+	0  =>  "HELMET"
+	1  =>  "ARMOR"
+	2  =>  "SHIELD"
+	3  =>  "GLOVES"
+	4  =>  "LRING"
+	5  =>  "RRING"
+	6  =>  "AMULET"
+	7  =>  "BELT"
+	8  =>  "BOOTS"
+	9  =>  "WEAPON1"
+	10 =>  "WEAPON2"
+	11 =>  "WEAPON3"
+	12 =>  "WEAPON4"
+	13 =>  "QUIVER1"
+	14 =>  "QUIVER2"
+	15 =>  "QUIVER3"
+	16 =>  "QUIVER4"
+	17 =>  "CLOAK"
+	18 =>  "QITEM1"
+	19 =>  "QITEM2"
+	20 =>  "QITEM3"
+	21 =>  "INV1"
+	22 =>  "INV2"
+	23 =>  "INV3"
+	24 =>  "INV4"
+	25 =>  "INV5"
+	26 =>  "INV6"
+	27 =>  "INV7"
+	28 =>  "INV8"
+	29 =>  "INV9"
+	30 =>  "INV10"
+	31 =>  "INV11"
+	32 =>  "INV12"
+	33 =>  "INV13"
+	34 =>  "INV14"
+	35 =>  "INV15"
+	36 =>  "INV16"
+END
+
 DEFINE_PATCH_FUNCTION TRY_EQUIPPING_ALL_ITEMS
 BEGIN
 	READ_LONG  0x2b8 slot_off ELSE 0
 	READ_LONG  0x2bc itm_off ELSE 0
 	READ_LONG  0x2c0 itm_num ELSE 0
+	SPRINT cre_name ~%SOURCE_RES%~
 
 	FOR (index = 0; index < itm_num; ++index) BEGIN
 		SET found = 0
 		SET category = (0 - 1)
+		SET currentitem = itm_off + index * 0x14
+		READ_ASCII currentitem currentitem_name (8) NULL
 
 		// CHECK IF ITEM IS EQUIPPED ALREADY
 
@@ -132,9 +175,6 @@ BEGIN
 		PATCH_IF found = 0 BEGIN
 
 			// READ ITEM CATEGORY
-
-			SET currentitem = itm_off + index * 0x14
-			READ_ASCII currentitem currentitem_name (8) NULL
 			INNER_ACTION BEGIN
 				ACTION_IF FILE_EXISTS_IN_GAME ~%currentitem_name%.itm~ BEGIN
 					COPY_EXISTING ~%currentitem_name%.itm~ ~override~
@@ -165,6 +205,8 @@ BEGIN
 						READ_SHORT (slot_off + (index3 * 0x02)) ref
 						PATCH_IF ref = 0xFFFF BEGIN
 							WRITE_SHORT (slot_off + (index3 * 0x02)) index
+							SPRINT slot_text $itemslots(~%index3%~)
+							PATCH_PRINT ~%cre_name%: Equipped item %currentitem_name% to slot %slot_text%~
 							found = 2
 						END
 					END
@@ -172,6 +214,9 @@ BEGIN
 					READ_SHORT (slot_off + ($remap_itemcategories(~%category%~) * 0x02)) ref
 					PATCH_IF ref = 0xFFFF BEGIN
 						WRITE_SHORT (slot_off + ($remap_itemcategories(~%category%~) * 0x02)) index
+						SET slot = $remap_itemcategories(~%category%~)
+						SPRINT slot_text $itemslots(~%slot%~)
+						PATCH_PRINT ~%cre_name%: Equipped item %currentitem_name% to slot %slot_text%~
 						found = 2
 					END
 				END
@@ -185,6 +230,8 @@ BEGIN
 				READ_SHORT (slot_off + (index2 * 0x02)) ref
 				PATCH_IF ref = index BEGIN
 					WRITE_SHORT (slot_off + (index2 * 0x02)) 0xFFFF
+					SPRINT slot_text $itemslots(~%index2%~)
+					PATCH_PRINT ~        from slot %slot_text%.~
 					found = 1
 				END
 			END
@@ -208,9 +255,18 @@ BEGIN
 				READ_SHORT (slot_off + (index2 * 0x02)) ref
 				PATCH_IF ref = 0xFFFF BEGIN
 					WRITE_SHORT (slot_off + (index2 * 0x02)) index
-					found = 1
+					SPRINT slot_text $itemslots(~%index2%~)
+					PATCH_PRINT ~%cre_name%: Added item %currentitem_name% to slot %slot_text%~
+					found = 2
 				END
 			END
+		END
+
+		// LOG SPILLED ITEMS
+
+		PATCH_IF found = 2 BEGIN
+			PATCH_PRINT ~        from outside the inventory.~
+			found = 1
 		END
 	END
 END
