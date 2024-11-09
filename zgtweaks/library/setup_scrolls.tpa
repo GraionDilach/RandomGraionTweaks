@@ -10,8 +10,8 @@ DEFINE_ACTION_FUNCTION setup_random_scrolls BEGIN
 	OUTER_TEXT_SPRINT scrolllv8 ~ZGTRWS8 ~
 	OUTER_TEXT_SPRINT scrolllv9 ~ZGTRWS9 ~
 
-	OUTER_TEXT_SPRINT exclusions ~TTSCRL01 TTSCRL02 DW#ALLSP SCRLADJ DW#SI590 DW#SI591 DW#SI592 DW#SI593 DW#SI594 DW#SI595 DW#SI596 DW#SI597~
-	
+	OUTER_TEXT_SPRINT exclusions ~TTSCRL01 TTSCRL02 DW#ALLSP SCRLADJ DW#SI590 DW#SI591 DW#SI592 DW#SI593 DW#SI594 DW#SI595 DW#SI596 DW#SI597 PSSCRL02~
+
 	OUTER_TEXT_SPRINT spellswithscrolls ~~
 
 	COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~
@@ -21,7 +21,7 @@ DEFINE_ACTION_FUNCTION setup_random_scrolls BEGIN
 			GET_OFFSET_ARRAY2 fx hoff ITM_V10_HEAD_EFFECTS
 			PHP_EACH fx AS intj => foff BEGIN
 				READ_SHORT foff opcode
-				PATCH_IF (opcode = 147) BEGIN 
+				PATCH_IF (opcode = 147) BEGIN
 					READ_ASCII (foff + 0x14) splres
 					SNPRINT (0 - 3) the_res ~%splres%~
 					SNPRINT 1 the_level ~%the_res%~
@@ -53,7 +53,7 @@ DEFINE_ACTION_FUNCTION setup_random_scrolls BEGIN
 								COPY_EXISTING ~%splres%.spl~ ~override~
 									READ_LONG 0x34 int_level
 								BUT_ONLY
-								ACTION_IF (int_level) > 0 THEN BEGIN						
+								ACTION_IF (int_level) > 0 THEN BEGIN
 									COPY_EXISTING ~MEWI%int_level%.txt~ ~override~
 										COUNT_REGEXP_INSTANCES CASE_INSENSITIVE EXACT_MATCH ~%splres%~ found
 									BUT_ONLY
@@ -88,9 +88,9 @@ DEFINE_ACTION_FUNCTION setup_random_scrolls BEGIN
 
 	ACTION_IF !FILE_EXISTS_IN_GAME "rndtres.2da" BEGIN
 <<<<<<<< ./weidu_external/zgtweaks/rndtres.2da
-2DA V1.0 
+2DA V1.0
 *
-	1 2 3 4 5 6 7 8 9 10	
+	1 2 3 4 5 6 7 8 9 10
 >>>>>>>>
     COPY ~./weidu_external/zgtweaks/rndtres.2da~ ~override~
 	END
@@ -104,7 +104,7 @@ DEFINE_ACTION_FUNCTION setup_random_scrolls BEGIN
 	APPEND ~rndtres.2da~ ~%scrolllv7%~
 	APPEND ~rndtres.2da~ ~%scrolllv8%~
 	APPEND ~rndtres.2da~ ~%scrolllv9%~
-	
+
 	APPEND ~rndtres.2da~ ~ZGTRWS1M ZGTRWS1~
 	APPEND ~rndtres.2da~ ~ZGTRWS2M ZGTRWS1 ZGTRWS2~
 	APPEND ~rndtres.2da~ ~ZGTRWS3M ZGTRWS1 ZGTRWS2 ZGTRWS3~
@@ -143,7 +143,7 @@ DEFINE_ACTION_FUNCTION setup_random_scrolls BEGIN
 		  TEXT_SPRINT $lines(~%row%~) ~%line%%LNL%~
 		  SET $lines(~%row%~ ~size~) = STRING_LENGTH $lines(~%row%~)
 		END
-	  
+
 		// write normalized table to buffer
 		PATCH_IF (num_added > 0) BEGIN
 		  DELETE_BYTES 0 BUFFER_LENGTH
@@ -156,7 +156,7 @@ DEFINE_ACTION_FUNCTION setup_random_scrolls BEGIN
 		END
 		PRETTY_PRINT_2DA
 		BUT_ONLY
-	
+
 	ACTION_FOR_EACH ITEM IN ~ZGTRWS1~ ~ZGTRWS2~ ~ZGTRWS3~ ~ZGTRWS4~ ~ZGTRWS5~ ~ZGTRWS6~ ~ZGTRWS7~ ~ZGTRWS8~ ~ZGTRWS9~ ~ZGTRWS1M~ ~ZGTRWS2M~ ~ZGTRWS3M~ ~ZGTRWS4M~ ~ZGTRWS5M~ ~ZGTRWS6M~ ~ZGTRWS7M~ ~ZGTRWS8M~ ~ZGTRWS9M~ BEGIN
 		COPY_EXISTING ~RNDTRE01.ITM~ ~override\%ITEM%.ITM~
 	END
