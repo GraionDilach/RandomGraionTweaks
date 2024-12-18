@@ -44,12 +44,12 @@ __COMPATIBILITY:__ Ce composant n'a pas été testé avec Item Revisions et ne p
 Ce composant modifie la quantité d'or possédée par les créatures
 - __41__ = Augmenter de 200%
 - __42__ = Augmenter de 150%
-- __43__ = Diminuer de 83%
-- __44__ = Diminuer de 75%
-- __45__ = Diminuer de 66%
-- __46__ = Diminuer de 50%
-- __47__ = Diminuer de 33%
-- __48__ = Diminuer de 25%
+- __43__ = Diminuer à 83%
+- __44__ = Diminuer à 75%
+- __45__ = Diminuer à 66%
+- __46__ = Diminuer à 50%
+- __47__ = Diminuer à 33%
+- __48__ = Diminuer à 25%
 
 **COMPATIBILITÉ** : Ces composants sont similaires à ceux disponible dans le mod Aurora's Shoes and Boots, à la différence que celui-ci n'utilise pas une liste de créatures spécifiques mais les affecte toutes, quelle que soit leur provenance.
 
@@ -57,12 +57,12 @@ Ce composant modifie la quantité d'or possédée par les créatures
 
 - __51__ = Augmenter de 200%
 - __52__ = Augmenter de 150%
-- __53__ = Diminuer de 83%
-- __54__ = Diminuer de 75%
-- __55__ = Diminuer de 66%
-- __56__ = Diminuer de 50%
-- __57__ = Diminuer de 33%
-- __58__ = Diminuer de 25%
+- __53__ = Diminuer à 83%
+- __54__ = Diminuer à 75%
+- __55__ = Diminuer à 66%
+- __56__ = Diminuer à 50%
+- __57__ = Diminuer à 33%
+- __58__ = Diminuer à 25%
 
 **COMPATIBILITÉ** : Ces composants sont similaires à ceux disponible dans le mod Aurora's Shoes and Boots, à la différence que celui-ci n'utilise pas une liste d'Items spécifiques mais les affecte tous, quelle que soit leur provenance.
 
@@ -86,14 +86,25 @@ Ce composant modifie le pourcentage de la somme demandée par les marchands pour
 Ce composant modifie le pourcentage de la somme payée par les marchands pour vos articles.
 - __71__ = Augmenter de 200%
 - __72__ = Augmenter de 150%
-- __73__ = Diminuer de 83%
-- __74__ = Diminuer de 75%
-- __75__ = Diminuer de 66%
-- __76__ = Diminuer de 50%
-- __77__ = Diminuer de 33%
-- __78__ = Diminuer de 25%
+- __73__ = Diminuer à 83%
+- __74__ = Diminuer à 75%
+- __75__ = Diminuer à 66%
+- __76__ = Diminuer à 50%
+- __77__ = Diminuer à 33%
+- __78__ = Diminuer à 25%
 
 **COMPATIBILITÉ** : Ces composants sont similaires à ceux disponible dans le mod Aurora's Shoes and Boots, à la différence que celui-ci n'utilise pas une liste de marchands spécifiques mais les affecte tous, quelle que soit leur provenance.
+
+## Composant 8X Modifier la quantité de munitions non magiques portées par les créatures.
+
+- __81:__ Augmenter la quantité de 150 %
+- __82:__ Diminuer la quantité à 75 %
+- __83:__ Diminuer la quantité à 66 %
+- __84:__ Diminuer la quantité à 50 %
+- __85:__ Diminuer la quantité à 33 %
+- __86:__ Diminuer la quantité à 25 %
+
+**COMPATIBILITÉ** : Ces composants détectent et prennent en compte les munitions aléatoires ajoutées par le mod IWDification.
 
 ## Composant 100 Table mixte PnP-BG de sorts supplémentaires basés sur la sagesse.
 
