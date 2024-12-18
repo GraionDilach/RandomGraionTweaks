@@ -1,0 +1,31 @@
+ACTION_DEFINE_ASSOCIATIVE_ARRAY common_ammo_list BEGIN
+	AROW01 => 1
+    AX1H04 => 1
+	BOLT01 => 1
+	BULL01 => 1
+	DART01 => 1
+	DAGG05 => 1
+	CDHQAROW => 1
+	CDHQBOLT => 1
+	CDHQBULL => 1
+	CDRDAROW => 1
+	CDRDBOLT => 1
+	CDRD1HTH => 1
+END
+
+COPY_EXISTING_REGEXP GLOB ~.*\.cre~ ~override~
+	READ_LONG  0x2bc itm_off ELSE 0
+	READ_LONG  0x2c0 itm_num ELSE 0
+	FOR (index = 0; index < itm_num; ++index) BEGIN
+		SET currentitem = itm_off + index * 0x14
+		READ_ASCII currentitem currentitem_name (8) NULL
+		PATCH_IF (VARIABLE_IS_SET currentitem_name) BEGIN
+			TO_UPPER currentitem_name
+			PATCH_IF (VARIABLE_IS_SET $common_ammo_list(~%currentitem_name%~)) BEGIN
+				READ_SHORT (currentitem + 10) currentitem_count
+				currentitem_count = currentitem_count * common_ammo_stack_modifier / 100
+				WRITE_SHORT (currentitem + 10) currentitem_count
+			END
+		END
+	END
+BUT_ONLY

@@ -57,6 +57,14 @@
 @77 = ~Decrease to 33%~
 @78 = ~Decrease to 25%~
 
+@80 = ~Change the nonmagical common ammunition amount carried by creatures~
+@81 = ~Increase affected stacks to 150%~
+@82 = ~Decrease affected stacks to 75%~
+@83 = ~Decrease affected stacks to 66%~
+@84 = ~Decrease affected stacks to 50%~
+@85 = ~Decrease affected stacks to 33%~
+@86 = ~Decrease affected stacks to 25%~
+
 @100 = ~Mixed PnP-BG wisdom-based bonus spells table~
 @101 = ~Grant Ranger spell slots to Cleric-Ranger multiclasses~
 

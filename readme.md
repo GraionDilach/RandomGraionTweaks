@@ -90,6 +90,17 @@ These components change the selling value of items, basically.
 
 __COMPATIBILITY:__ These components are similar to a group of components in Aurora's Shoes and Boots except that this one doesn't use an internal list and will affect all stores, regardless of source of origin.
 
+## Components 8X Change the nonmagical common ammunition amount carried by creatures
+
+- __81:__ Change to 150% of the stack
+- __82:__ Change to 75% of the stack
+- __83:__ Change to 66% of the stack
+- __84:__ Change to 50% of the stack
+- __85:__ Change to 33% of the stack
+- __86:__ Change to 25% of the stack
+
+__COMPATIBILITY:__ These components detect and support the random ammunition stacks of IWDification.
+
 ## Component 100 Mixed PnP-BG wisdom-based bonus spells table
 
 As discussed during the development of the EE Fixpack, Bioware made an error when they implemented a feature with the way the bonus spells are set up (which was only fixed in PST), resulting with more bonus mid-level spells and less low-level bonus spells than intended. This component tries to blend both options so that players will end up having the bonuses of both tables consistently excluding one caveat: both PnP and BG provides the first level 4 bonus spells on Wisdom 18 which breaks a pattern and is thereby delayed.

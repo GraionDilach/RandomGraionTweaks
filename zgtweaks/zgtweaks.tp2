@@ -1,6 +1,6 @@
 BACKUP ~weidu_external/zgtweaks/backup~ // location to store files for uninstall purposes
 AUTHOR ~Graion Dilach~
-VERSION ~1.15~
+VERSION ~1.16~
 
 ALWAYS
 // do not convert Setup.tra files, those should be UTF8 already
@@ -813,6 +813,54 @@ COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~
 		WRITE_LONG 0x18 buyprice
 	END
 	BUT_ONLY
+
+BEGIN @81 SUBCOMPONENT @80
+LABEL ZG-CHANGE-COMMON-AMMO-150
+DESIGNATED 81
+
+	OUTER_SET common_ammo_stack_modifier = 150
+
+	INCLUDE ~%MOD_FOLDER%/library/decreasecommonammo.tpa~
+
+BEGIN @82 SUBCOMPONENT @80
+LABEL ZG-CHANGE-COMMON-AMMO-75
+DESIGNATED 82
+
+	OUTER_SET common_ammo_stack_modifier = 75
+
+	INCLUDE ~%MOD_FOLDER%/library/decreasecommonammo.tpa~
+
+BEGIN @83 SUBCOMPONENT @80
+LABEL ZG-CHANGE-COMMON-AMMO-66
+DESIGNATED 83
+
+	OUTER_SET common_ammo_stack_modifier = 66
+
+	INCLUDE ~%MOD_FOLDER%/library/decreasecommonammo.tpa~
+
+BEGIN @84 SUBCOMPONENT @80
+LABEL ZG-CHANGE-COMMON-AMMO-50
+DESIGNATED 84
+
+	OUTER_SET common_ammo_stack_modifier = 50
+
+	INCLUDE ~%MOD_FOLDER%/library/decreasecommonammo.tpa~
+
+BEGIN @85 SUBCOMPONENT @80
+LABEL ZG-CHANGE-COMMON-AMMO-33
+DESIGNATED 85
+
+	OUTER_SET common_ammo_stack_modifier = 33
+
+	INCLUDE ~%MOD_FOLDER%/library/decreasecommonammo.tpa~
+
+BEGIN @86 SUBCOMPONENT @80
+LABEL ZG-CHANGE-COMMON-AMMO-25
+DESIGNATED 86
+
+	OUTER_SET common_ammo_stack_modifier = 25
+
+	INCLUDE ~%MOD_FOLDER%/library/decreasecommonammo.tpa~
 
 BEGIN @100
 LABEL ZG-BOBW-WISDOM-TABLE
