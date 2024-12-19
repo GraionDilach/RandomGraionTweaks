@@ -75,11 +75,11 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY remap_itemcategories BEGIN
 END
 
 ACTION_DEFINE_ASSOCIATIVE_ARRAY remap_slotcount BEGIN
-	5  => 16 // quiver
+	5  => 17 // quiver
 	9  => 21 // quick item
 	10 => 6  // ring
 	11 => 21 // quick item
-	14 => 16 // quiver
+	14 => 17 // quiver
 	15 => 13 // weapon
 	16 => 13 // weapon
 	17 => 13 // weapon
@@ -96,7 +96,7 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY remap_slotcount BEGIN
 	28 => 13 // weapon
 	29 => 13 // weapon
 	30 => 13 // weapon
-	31 => 16 // quiver
+	31 => 17 // quiver
 	38 => 21 // quick item
 	44 => 13 // weapon
 	57 => 13 // weapon
